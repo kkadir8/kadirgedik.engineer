@@ -2037,6 +2037,11 @@ section {
     .avatar-face {
         transform: translateY(5px);
     }
+
+    /* Mobilde scroll indicator gizle */
+    .scroll-indicator {
+        display: none;
+    }
 }
 
 /* Small Mobile Devices */
