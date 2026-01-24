@@ -2013,6 +2013,7 @@ section {
 
     .eye {
         height: 0.75rem;
+        width: 30px;
     }
 
     /* Göz bebeği boyutu - mobilde biraz büyüt */
