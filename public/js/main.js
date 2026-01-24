@@ -424,7 +424,38 @@ function initAvatarEyeTracking() {
         requestAnimationFrame(render);
     }
 
+    // Mobil için touch event handler
+    function handleTouchMove(e) {
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            const rect = avatarContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const dx = touch.clientX - centerX;
+            const dy = touch.clientY - centerY;
+
+            const normalizedX = Math.max(-1, Math.min(1, dx / (window.innerWidth / 4)));
+            const normalizedY = Math.max(-1, Math.min(1, dy / (window.innerHeight / 4)));
+
+            targetX = normalizedX * MAX_MOVE;
+            targetY = normalizedY * MAX_MOVE;
+        }
+    }
+
+    // Parmak kalkınca gözleri ortala
+    function handleTouchEnd() {
+        targetX = 0;
+        targetY = 0;
+    }
+
     document.addEventListener('mousemove', handleMouseMove);
+
+    // Mobil touch desteği
+    document.addEventListener('touchstart', handleTouchMove, { passive: true });
+    document.addEventListener('touchmove', handleTouchMove, { passive: true });
+    document.addEventListener('touchend', handleTouchEnd);
+
     requestAnimationFrame(render);
 
     console.log('Avatar LERP eye tracking initialized (Class-based)');
