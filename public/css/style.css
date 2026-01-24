@@ -2018,7 +2018,7 @@ section {
 
     /* Avatar yüzünü mavi daire içinde aşağı indir */
     .avatar-face {
-        transform: translateY(15px);
+        transform: translateY(10px);
     }
 }
 
