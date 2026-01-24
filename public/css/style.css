@@ -1984,7 +1984,7 @@ section {
 
     .hero-image-wrapper {
         margin-bottom: 2rem;
-        margin-top: 9rem;
+        margin-top: 3rem;
         display: flex;
         justify-content: center;
     }
@@ -2014,6 +2014,11 @@ section {
 
     .hero-description {
         font-size: 0.95rem;
+    }
+
+    /* Avatar yüzünü mavi daire içinde aşağı indir */
+    .avatar-face {
+        transform: translateY(15px);
     }
 }
 
@@ -2045,5 +2050,10 @@ section {
 
     .hero-buttons .btn {
         width: 100%;
+    }
+
+    /* Avatar yüzünü mavi daire içinde aşağı indir */
+    .avatar-face {
+        transform: translateY(18px);
     }
 }
