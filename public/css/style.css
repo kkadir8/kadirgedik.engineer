@@ -1996,7 +1996,7 @@ section {
 
     /* Mobilde sol göz */
     .eye:first-child {
-        transform: translateX(-2px);
+        transform: translateX(-3px);
     }
 
     /* Mobilde sağ göz */
