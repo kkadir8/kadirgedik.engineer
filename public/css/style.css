@@ -2015,6 +2015,11 @@ section {
         height: 0.75rem;
     }
 
+    /* Göz bebeği boyutu - mobilde biraz büyüt */
+    .eye-pupil {
+        width: 60%;
+    }
+
     .floating-badge {
         display: none;
     }
