@@ -1955,3 +1955,94 @@ section {
     opacity: 0;
     transform: translateY(5px);
 }
+
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet and Small Laptops */
+@media (max-width: 992px) {
+    .hero-image-wrapper {
+        margin-top: 2rem;
+    }
+
+    .profile-image-container {
+        width: 280px;
+        height: 280px;
+    }
+
+    .eyes-container {
+        top: 38%;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .hero-section .row {
+        flex-direction: column-reverse;
+    }
+
+    .hero-image-wrapper {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-image-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .eyes-container {
+        top: 36%;
+        width: 17%;
+        height: 28px;
+    }
+
+    .eye {
+        height: 0.75rem;
+    }
+
+    .floating-badge {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .profile-image-container {
+        width: 220px;
+        height: 220px;
+    }
+
+    .eyes-container {
+        top: 35%;
+        width: 16%;
+        height: 24px;
+    }
+
+    .eye {
+        height: 0.65rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+}
