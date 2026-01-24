@@ -383,7 +383,9 @@ function initAvatarEyeTracking() {
 
     // Configuration
     const LERP_FACTOR = 0.1;
-    const MAX_MOVE = 2; // Reduced range for realistic movement
+    // Mobilde hareket aralığını azalt (göz bebeği beyazın dışına çıkmasın)
+    const isMobile = window.innerWidth <= 768;
+    const MAX_MOVE = isMobile ? 1 : 2; // Mobilde daha az hareket
 
     // Target coordinates
     let targetX = 0;
