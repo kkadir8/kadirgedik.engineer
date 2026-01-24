@@ -2018,7 +2018,7 @@ section {
 
     /* Avatar yüzünü mavi daire içinde aşağı indir */
     .avatar-face {
-        transform: translateY(10px);
+        transform: translateY(5px);
     }
 }
 
@@ -2054,6 +2054,6 @@ section {
 
     /* Avatar yüzünü mavi daire içinde aşağı indir */
     .avatar-face {
-        transform: translateY(18px);
+        transform: translateY(10px);
     }
 }
