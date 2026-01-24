@@ -159,17 +159,15 @@ function initMouseTracking() {
             orb.style.transform = `translate(${x}px, ${y}px)`;
         });
 
-        // Tilt profile image based on mouse position
-        if (profileContainer) {
-            const rect = profileContainer.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-
-            const angleX = (mouseY - centerY) * 0.01;
-            const angleY = (mouseX - centerX) * -0.01;
-
-            profileContainer.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-        }
+        // Avatar tilt efekti kaldırıldı - sadece göz hareketi kalacak
+        // if (profileContainer) {
+        //     const rect = profileContainer.getBoundingClientRect();
+        //     const centerX = rect.left + rect.width / 2;
+        //     const centerY = rect.top + rect.height / 2;
+        //     const angleX = (mouseY - centerY) * 0.01;
+        //     const angleY = (mouseX - centerX) * -0.01;
+        //     profileContainer.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+        // }
 
         // Move floating badges opposite to mouse
         floatingBadges.forEach((badge, index) => {
@@ -185,9 +183,10 @@ function initMouseTracking() {
         orbs.forEach(orb => {
             orb.style.transform = 'translate(0, 0)';
         });
-        if (profileContainer) {
-            profileContainer.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        }
+        // Avatar tilt reset kaldırıldı
+        // if (profileContainer) {
+        //     profileContainer.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        // }
     });
 }
 
