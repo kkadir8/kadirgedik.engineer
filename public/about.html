@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kadir Gedik hakkında - Yazılım Mühendisi, Web Developer, AI Enthusiast">
+    <title>Hakkımda | Kadir Gedik</title>
+    <link rel="icon" type="image/svg+xml" href="/media/admin_panel_logo.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/"><span class="text-gradient">KG</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="/" data-tr="Anasayfa" data-en="Home">Anasayfa</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="/about" data-tr="Hakkımda"
+                            data-en="About">Hakkımda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/projects" data-tr="Projeler"
+                            data-en="Projects">Projeler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact" data-tr="İletişim"
+                            data-en="Contact">İletişim</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="lang-switcher">
+                        <button class="btn btn-sm btn-lang active" data-lang="tr">TR</button>
+                        <button class="btn btn-sm btn-lang" data-lang="en">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <p class="section-subtitle" data-tr="Hakkımda" data-en="About Me">Hakkımda</p>
+                    <h1 class="page-title" data-tr="Beni Tanıyın" data-en="Get to Know Me">Beni Tanıyın</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="about-image-wrapper">
+                        <img src="/media/profil_fotoğrafı.jpeg" alt="Kadir Gedik" class="about-image">
+                        <div class="about-badge">
+                            <i class="bi bi-code-slash"></i>
+                            <span>Software</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="about-content">
+                        <h2 class="text-gradient mb-4">Kadir Gedik</h2>
+                        <p class="lead" data-tr="Yazılım Mühendisi | Web Geliştirici | AI Meraklısı"
+                            data-en="Software Engineer | Web Developer | AI Enthusiast">
+                            Yazılım Mühendisi | Web Geliştirici | AI Meraklısı
+                        </p>
+
+                        <div class="about-text">
+                            <p data-tr="Çocukluktan beri teknolojiye, özellikle robotik kodlamaya tutkuyla bağlıyım. Bu tutku, hem yazılım geliştirme hem de eğitim alanlarında kendimi sürekli geliştirmeme ilham veriyor."
+                                data-en="Since childhood, I have been passionate about technology, particularly robotics coding. This passion has driven me to continuously improve myself in both software development and education.">
+                                Çocukluktan beri teknolojiye, özellikle robotik kodlamaya tutkuyla bağlıyım. Bu tutku,
+                                hem yazılım geliştirme hem de eğitim alanlarında kendimi sürekli geliştirmeme ilham
+                                veriyor.
+                            </p>
+
+                            <p data-tr="Yazılım mühendisliği ve yapay zeka mühendisliği alanlarında kendimi aynı anda geliştirip bu alanlardaki bilgi birikimlerimi birleştiriyorum. Web tasarım, mobil uygulama geliştirme ve AI otomasyon araçları üzerinde çalışıyorum."
+                                data-en="I'm simultaneously developing myself in software engineering and AI engineering, combining my expertise in both fields. I work on web design, mobile app development, and AI automation tools.">
+                                Yazılım mühendisliği ve yapay zeka mühendisliği alanlarında kendimi aynı anda geliştirip
+                                bu alanlardaki bilgi birikimlerimi birleştiriyorum. Web tasarım, mobil uygulama
+                                geliştirme ve AI otomasyon araçları üzerinde çalışıyorum.
+                            </p>
+
+                            <p data-tr="Geçmişte Teknofest Kulübü Başkanı olarak öğrencilerle projeler geliştirdim, Teknofest takımlarına mentorluk yaptım ve teknoloji odaklı etkinlikler düzenledim. Farklı yaş gruplarındaki öğrencilere robotik kodlama ve algoritma eğitimi verdim."
+                                data-en="In the past, I served as the President of the Teknofest Club, where I developed projects with students, mentored Teknofest teams, and took part in organizing technology-focused events. I have also taught robotics coding and algorithm training to students of different age groups.">
+                                Geçmişte Teknofest Kulübü Başkanı olarak öğrencilerle projeler geliştirdim, Teknofest
+                                takımlarına mentorluk yaptım ve teknoloji odaklı etkinlikler düzenledim. Farklı yaş
+                                gruplarındaki öğrencilere robotik kodlama ve algoritma eğitimi verdim.
+                            </p>
+                        </div>
+
+                        <div class="about-cta mt-4">
+                            <button onclick="downloadCV()" class="btn btn-primary"
+                                style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                <i class="bi bi-download"></i>
+                                <span data-tr="CV İndir" data-en="Download CV">CV İndir</span>
+                            </button>
+                            <a href="/contact" class="btn btn-outline-primary">
+                                <i class="bi bi-envelope me-2"></i>
+                                <span data-tr="İletişime Geç" data-en="Contact Me">İletişime Geç</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section py-5 bg-tertiary">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <p class="section-subtitle" data-tr="Yetenekler" data-en="Skills">Yetenekler</p>
+                <h2 class="section-title" data-tr="Teknik Becerilerim" data-en="Technical Skills">Teknik Becerilerim
+                </h2>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="bi bi-code-slash"></i></div>
+                        <h4 data-tr="Programlama Dilleri" data-en="Programming Languages">Programlama Dilleri</h4>
+                        <div class="skill-tags">
+                            <span>JavaScript</span>
+                            <span>Python</span>
+                            <span>SQL</span>
+                            <span>HTML/CSS</span>
+                            <span>C#</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="bi bi-layers"></i></div>
+                        <h4 data-tr="Framework & Kütüphaneler" data-en="Frameworks & Libraries">Framework & Kütüphaneler
+                        </h4>
+                        <div class="skill-tags">
+                            <span>Node.js</span>
+                            <span>Express</span>
+                            <span>React</span>
+                            <span>Flask</span>
+                            <span>Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="bi bi-robot"></i></div>
+                        <h4 data-tr="AI & Makine Öğrenmesi" data-en="AI & Machine Learning">AI & Makine Öğrenmesi</h4>
+                        <div class="skill-tags">
+                            <span>TensorFlow</span>
+                            <span>PyTorch</span>
+                            <span>NLP</span>
+                            <span>Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="bi bi-database"></i></div>
+                        <h4 data-tr="Veritabanları" data-en="Databases">Veritabanları</h4>
+                        <div class="skill-tags">
+                            <span>MongoDB</span>
+                            <span>PostgreSQL</span>
+                            <span>MySQL</span>
+                            <span>Supabase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="bi bi-tools"></i></div>
+                        <h4 data-tr="Araçlar & Platformlar" data-en="Tools & Platforms">Araçlar & Platformlar</h4>
+                        <div class="skill-tags">
+                            <span>Webflow</span>
+                            <span>Git</span>
+                            <span>Docker</span>
+                            <span>Figma</span>
+                            <span>VS Code</span>
+                            <span>n8n</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="bi bi-cpu"></i></div>
+                        <h4 data-tr="Robotik & IoT" data-en="Robotics & IoT">Robotik & IoT</h4>
+                        <div class="skill-tags">
+                            <span>Arduino</span>
+                            <span>LEGO SPIKE</span>
+                            <span>Deneyap Kart</span>
+                            <span>Tinkercad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <p class="section-subtitle" data-tr="Kariyer" data-en="Career">Kariyer</p>
+                <h2 class="section-title" data-tr="İş Deneyimlerim" data-en="Work Experience">İş Deneyimlerim</h2>
+            </div>
+
+            <div class="timeline">
+                <!-- Experience 0 - Loomon Studio -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-palette"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4>Creative Developer & AI Specialist</h4>
+                                <p class="company">Loomon Studio</p>
+                                <p class="date" data-tr="Aralık 2025 - Devam Ediyor | Hibrit"
+                                    data-en="Dec 2025 - Present | Hybrid">Aralık 2025 - Devam Ediyor | Hibrit</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Loomon Studio'nun dijital varlıklarının uçtan uca mimarisini kurguluyor ve geliştiriyorum. Webflow ve özel JavaScript (GSAP/Three.js) kullanarak yüksek performanslı, etkileşimli web deneyimleri tasarlıyorum. Eş zamanlı olarak; stüdyonun operasyonel verimliliğini artıracak AI tabanlı otomasyon araçları ve veri işleme modelleri üzerine Ar-Ge çalışmaları yürütüyor, 'tasarım ve yapay zeka' entegrasyonunu yönetiyorum."
+                                data-en="I architect and develop the end-to-end digital assets of Loomon Studio. I design high-performance, interactive web experiences using Webflow and custom JavaScript (GSAP, Three.js). Simultaneously, I conduct R&D on AI-based automation tools and data processing models to increase the studio's operational efficiency and manage the integration of 'design and artificial intelligence'.">
+                                Loomon Studio'nun dijital varlıklarının uçtan uca mimarisini kurguluyor ve
+                                geliştiriyorum. Webflow ve özel JavaScript (GSAP/Three.js) kullanarak yüksek
+                                performanslı, etkileşimli web deneyimleri tasarlıyorum. Eş zamanlı olarak; stüdyonun
+                                operasyonel verimliliğini artıracak AI tabanlı otomasyon araçları ve veri işleme
+                                modelleri üzerine Ar-Ge çalışmaları yürütüyor, 'tasarım ve yapay zeka' entegrasyonunu
+                                yönetiyorum.
+                            </p>
+                            <img src="/media/loomon.studio.JPG.jpeg" alt="Loomon Studio" class="timeline-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 1 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-briefcase"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4>Software Development Intern</h4>
+                                <p class="company">Software Persona</p>
+                                <p class="date" data-tr="Oca 2026 - Devam Ediyor | Uzaktan"
+                                    data-en="Jan 2026 - Present | Remote">Oca 2026 - Devam Ediyor | Uzaktan</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Web & Mobil Geliştirme: JavaScript ile responsive web uygulamaları ve Android/iOS prototipleri geliştirme. Veri Yönetimi: SQL ile e-ticaret veritabanı yapıları tasarlama. UI/UX Tasarım: Figma ile kullanıcı odaklı arayüzler ve prototipler oluşturma."
+                                data-en="Web & Mobile Development: Building responsive web apps using JavaScript and developing Android/iOS prototypes. Data Management: Designing e-commerce database structures using SQL. UI/UX Design: Creating user-centric interfaces with Figma.">
+                                Web & Mobil Geliştirme: JavaScript ile responsive web uygulamaları ve Android/iOS
+                                prototipleri geliştirme. Veri Yönetimi: SQL ile e-ticaret veritabanı yapıları tasarlama.
+                                UI/UX Tasarım: Figma ile kullanıcı odaklı arayüzler ve prototipler oluşturma.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-code-square"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4>Web Developer</h4>
+                                <p class="company">Hayrat Yardım (Hezarfen Hareketi)</p>
+                                <p class="date" data-tr="Mar 2025 - Devam Ediyor | Hibrit"
+                                    data-en="Mar 2025 - Present | Hybrid">Mar 2025 - Devam Ediyor | Hibrit</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Hezarfen Hareketi kapsamında Hayrat İnsani Yardım Derneği'nin web sitesinin geliştirilmesi, tasarımı, güvenliği ve bakımı üzerinde çalışıyorum."
+                                data-en="Within the scope of the Hezarfen Movement, I have been working on the development, design, security, and maintenance of Hayrat Humanitarian Aid Association's website.">
+                                Hezarfen Hareketi kapsamında Hayrat İnsani Yardım Derneği'nin web sitesinin
+                                geliştirilmesi, tasarımı, güvenliği ve bakımı üzerinde çalışıyorum.
+                            </p>
+                            <img src="/media/hayrat_web_Tasarim.jpeg" alt="Hayrat Web Development"
+                                class="timeline-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-rocket-takeoff"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4 data-tr="Teknofest Kulübü Başkanı" data-en="Teknofest Club President">Teknofest
+                                    Kulübü Başkanı</h4>
+                                <p class="company">İstanbul Topkapı Üniversitesi</p>
+                                <p class="date" data-tr="Ara 2024 - Eki 2025 | İstanbul"
+                                    data-en="Dec 2024 - Oct 2025 | Istanbul">Ara 2024 - Eki 2025 | İstanbul</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="T3 Vakfı üniversite temsilcisi olarak Teknofest Kulübü'nü kurdum ve yönettim. Sosyal sorumluluk projeleri düzenledik, Deneyap Kart atölyeleri verdik, Teknofest takımlarına mentorluk yaptık."
+                                data-en="As the university representative of the T3 Foundation, I founded and lead the Teknofest Club. We organized social responsibility projects, provided Deneyap Card workshops, mentored Teknofest teams.">
+                                T3 Vakfı üniversite temsilcisi olarak Teknofest Kulübü'nü kurdum ve yönettim. Sosyal
+                                sorumluluk projeleri düzenledik, Deneyap Kart atölyeleri verdik, Teknofest takımlarına
+                                mentorluk yaptık.
+                            </p>
+                            <img src="/media/foto_4.JPEG" alt="Teknofest Club" class="timeline-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 4 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4 data-tr="Kodlama Eğitmeni" data-en="Coding Instructor">Kodlama Eğitmeni</h4>
+                                <p class="company">Kidzz Akademi</p>
+                                <p class="date" data-tr="Ara 2024 - Tem 2025 | Gebze"
+                                    data-en="Dec 2024 - Jul 2025 | Gebze">Ara 2024 - Tem 2025 | Gebze</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Kidzz Akademi'de okul öncesi yaş grubundaki çocuklara algoritma dersleri verdim ve motorlar, LED devreleri ve interaktif aktiviteler kullanarak kodlamayı yaşa uygun şekilde öğrettim."
+                                data-en="At Kidzz Academy, I taught algorithm lessons to preschool-aged children and introduced them to coding in an age-appropriate way using motors, LED circuits, and interactive activities.">
+                                Kidzz Akademi'de okul öncesi yaş grubundaki çocuklara algoritma dersleri verdim ve
+                                motorlar, LED devreleri ve interaktif aktiviteler kullanarak kodlamayı yaşa uygun
+                                şekilde öğrettim.
+                            </p>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <img src="/media/kidzz_academy.jpeg" alt="Kidzz Academy" class="timeline-image"
+                                    style="width: 48%;">
+                                <img src="/media/kidzz_academy_1.jpg" alt="Kidzz Academy Kadir" class="timeline-image"
+                                    style="width: 48%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 5 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-cpu"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4 data-tr="Kodlama & Robotik Eğitmeni" data-en="Coding & Robotics Instructor">Kodlama
+                                    & Robotik Eğitmeni</h4>
+                                <p class="company">Üpo Akademi</p>
+                                <p class="date" data-tr="Ara 2024 - Tem 2025 | Gebze"
+                                    data-en="Dec 2024 - Jul 2025 | Gebze">Ara 2024 - Tem 2025 | Gebze</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Üpo Akademi'de ilkokul ve ortaokul öğrencilerine kodlama, robotik kodlama ve Teknofest odaklı dersler verdim. Teknofest takımları oluşturmalarına ve yarışmaya hazırlanmalarına yardımcı oldum."
+                                data-en="At Üpo Academy, I taught coding, robotics coding, and Teknofest-focused lessons to elementary and middle school students. I helped form Teknofest teams and guided them in preparing for the competition.">
+                                Üpo Akademi'de ilkokul ve ortaokul öğrencilerine kodlama, robotik kodlama ve Teknofest
+                                odaklı dersler verdim. Teknofest takımları oluşturmalarına ve yarışmaya hazırlanmalarına
+                                yardımcı oldum.
+                            </p>
+                            <img src="/media/upo_academy.jpeg" alt="Üpo Academy" class="timeline-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 6 -->
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon">
+                                <i class="bi bi-pc-display"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4 data-tr="IT Uzmanı" data-en="IT Specialist">IT Uzmanı</h4>
+                                <p class="company">Hayrat Uluslararası Hafızlık Derneği</p>
+                                <p class="date" data-tr="Nis 2024 - Haz 2025 | İstanbul"
+                                    data-en="Apr 2024 - Jun 2025 | Istanbul">Nis 2024 - Haz 2025 | İstanbul</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Hayrat Uluslararası Hafızlık ve İslami İlimler Derneği'nde IT Uzmanı olarak çalıştım. Donanım ve yazılım desteği sağlamanın yanı sıra kuruluşun web sitesini yönettim."
+                                data-en="I worked as an IT Specialist at the Hayrat International Association for Memorization and Islamic Studies. My responsibilities included providing hardware and software support as well as managing the organization's website.">
+                                Hayrat Uluslararası Hafızlık ve İslami İlimler Derneği'nde IT Uzmanı olarak çalıştım.
+                                Donanım ve yazılım desteği sağlamanın yanı sıra kuruluşun web sitesini yönettim.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Volunteer Experience -->
+                <div class="timeline-item volunteer" data-aos="fade-up">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-icon bg-success">
+                                <i class="bi bi-heart"></i>
+                            </div>
+                            <div class="timeline-info">
+                                <h4 data-tr="LEGO Robotik & 3D Tasarım Eğitmeni (Gönüllü)"
+                                    data-en="LEGO Robotics & 3D Design Instructor (Volunteer)">LEGO Robotik & 3D Tasarım
+                                    Eğitmeni (Gönüllü)</h4>
+                                <p class="company">Hezarfen Hareketi</p>
+                                <p class="date" data-tr="Mar 2024 - May 2024 | Eğitim"
+                                    data-en="Mar 2024 - May 2024 | Education">Mar 2024 - May 2024 | Eğitim</p>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p data-tr="Ortaokul ve lise öğrencilerine LEGO Education SPIKE Prime seti ile eğitim verdim ve Tinkercad ile tasarım dersleri yürüttüm. Öğrencilerimle birlikte LEGO robotlar tasarlayıp kodladık ve bunları Teknofest 2024 Adana'da Hayrat İnsani Yardım Derneği standında sergiledik."
+                                data-en="I provided training to middle and high school students using the LEGO Education SPIKE Prime set and conducted design courses with Tinkercad. Together with my students, we designed and coded LEGO robots, which we showcased at the Hayrat Humanitarian Aid Association booth during Teknofest 2024 in Adana.">
+                                Ortaokul ve lise öğrencilerine LEGO Education SPIKE Prime seti ile eğitim verdim ve
+                                Tinkercad ile tasarım dersleri yürüttüm. Öğrencilerimle birlikte LEGO robotlar
+                                tasarlayıp kodladık ve bunları Teknofest 2024 Adana'da Hayrat İnsani Yardım Derneği
+                                standında sergiledik.
+                            </p>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <img src="/media/hezarfen_hareketi_gonullu_egitim.jpeg" alt="Hezarfen Eğitim 1"
+                                    class="timeline-image" style="width: 48%;">
+                                <img src="/media/hezarfen_hareketi_gonullu_egitim_2.jpeg" alt="Hezarfen Eğitim 2"
+                                    class="timeline-image" style="width: 48%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section py-5 bg-tertiary">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <p class="section-subtitle" data-tr="Etkinlikler" data-en="Events">Etkinlikler</p>
+                <h2 class="section-title" data-tr="Katılınan Etkinlikler" data-en="Attended Events">Katılınan
+                    Etkinlikler</h2>
+            </div>
+
+            <div class="row g-4">
+                <!-- TEKNOFEST 2025 İstanbul -->
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="event-card">
+                        <div class="event-header">
+                            <div class="event-icon"><i class="bi bi-rocket-takeoff"></i></div>
+                            <div class="event-info">
+                                <h4>TEKNOFEST 2025 İstanbul</h4>
+                                <p class="event-role" data-tr="Gönüllü Görevli" data-en="Volunteer Staff">Gönüllü
+                                    Görevli</p>
+                                <p class="event-date">17-21 Eylül 2025 | Atatürk Havalimanı</p>
+                            </div>
+                        </div>
+                        <div class="event-body">
+                            <p data-tr="TEKNOFEST 2025 İstanbul heyecanına 'Gönüllü Görevli' olarak ortak oldum. Dünyanın en büyük havacılık, uzay ve teknoloji festivalinde sahada görev almak ve bu atmosferi solumak eşsiz bir deneyimdi. Görev sürecimiz boyunca edindiğim tecrübeleri ve biriktirdiğim anıları bu sertifika ile taçlandırdım."
+                                data-en="I joined TEKNOFEST 2025 Istanbul as a 'Volunteer Staff'. It was a unique experience to work in the field at the world's largest aviation, space, and technology festival and breathe in this atmosphere. I crowned the experiences and memories I gathered during my duty with this certificate.">
+                                TEKNOFEST 2025 İstanbul heyecanına "Gönüllü Görevli" olarak ortak oldum. Dünyanın en
+                                büyük havacılık, uzay ve teknoloji festivalinde sahada görev almak ve bu atmosferi
+                                solumak eşsiz bir deneyimdi.
+                            </p>
+                            <div class="d-flex gap-2 flex-wrap mt-3">
+                                <img src="/media/teknofest_gonullu_gorevli.jpeg" alt="TEKNOFEST 2025 Görevli"
+                                    class="event-image" style="width: 48%;">
+                                <img src="/media/teknofest_gonullu_gorevli_2.JPEG" alt="TEKNOFEST 2025 Sertifika"
+                                    class="event-image" style="width: 48%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TEKNOFEST 2024 Adana -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="event-card">
+                        <div class="event-header">
+                            <div class="event-icon"><i class="bi bi-airplane"></i></div>
+                            <div class="event-info">
+                                <h4>TEKNOFEST 2024 Adana</h4>
+                                <p class="event-role" data-tr="Hezarfen Hareketi Stand Görevlisi"
+                                    data-en="Hezarfen Movement Booth Staff">Hezarfen Hareketi Stand Görevlisi</p>
+                                <p class="event-date">Eylül 2024 | Adana</p>
+                            </div>
+                        </div>
+                        <div class="event-body">
+                            <p data-tr="Türkiye'nin en büyük teknoloji ve havacılık festivali olan TEKNOFEST 2024 Adana'da Hezarfen Hareketi stand görevlisiydim. Bu büyük organizasyonda, teknolojiye gönül veren gençlerin projelerini inceleyip, ülkemizin geleceğine katkı sağlayacak yenilikler hakkında fikir alışverişinde bulundum. Teknofest'e katılmış olmaktan büyük bir mutluluk ve gurur duyuyoruz!"
+                                data-en="I was a booth staff member for Hezarfen Movement at TEKNOFEST 2024 Adana, Turkey's largest technology and aviation festival. In this major organization, I examined the projects of young people who are passionate about technology and exchanged ideas about innovations that will contribute to our country's future.">
+                                Türkiye'nin en büyük teknoloji ve havacılık festivali olan TEKNOFEST 2024 Adana'da
+                                Hezarfen Hareketi stand görevlisiydim. Bu organizasyonda teknolojiye gönül veren
+                                gençlerin projelerini inceleyip, ülkemizin geleceğine katkı sağlayacak yenilikler
+                                hakkında fikir alışverişinde bulundum.
+                            </p>
+                            <div class="d-flex gap-2 flex-wrap mt-3">
+                                <img src="/media/teknofest_2024_gorevli.jpeg" alt="TEKNOFEST 2024 Adana"
+                                    class="event-image" style="width: 48%;">
+                                <img src="/media/teknofest_2024_gorevli.WEBP" alt="TEKNOFEST 2024 Stand"
+                                    class="event-image" style="width: 48%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates-section py-5 bg-tertiary">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <p class="section-subtitle" data-tr="Sertifikalar" data-en="Certificates">Sertifikalar</p>
+                <h2 class="section-title" data-tr="Lisanslar & Sertifikalar" data-en="Licenses & Certifications">
+                    Lisanslar & Sertifikalar</h2>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="cert-card">
+                        <img src="/media/teknofest_2025_gonullu_gorevli.png" alt="TEKNOFEST 2025 Sertifika"
+                            class="cert-image clickable-image">
+                        <div class="cert-content">
+                            <h5 data-tr="TEKNOFEST 2025 Gönüllü Görevli Sertifikası"
+                                data-en="TEKNOFEST 2025 Volunteer Certificate">TEKNOFEST 2025 Gönüllü Görevli
+                                Sertifikası</h5>
+                            <p class="cert-issuer">TEKNOFEST</p>
+                            <p class="cert-date">Kasım 2025</p>
+                            <p class="cert-desc"
+                                data-tr="Dünyanın en büyük havacılık, uzay ve teknoloji festivali kapsamında saha operasyonları, takım koordinasyonu ve etkinlik yönetimi süreçlerinde aktif rol aldım."
+                                data-en="Took an active role in field operations, team coordination, and event management processes within the scope of the world's largest aviation, space, and technology festival.">
+                                Dünyanın en büyük havacılık, uzay ve teknoloji festivali kapsamında saha operasyonları,
+                                takım koordinasyonu ve etkinlik yönetimi süreçlerinde aktif rol aldım.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cert-card">
+                        <img src="/media/deneyap_katılım_sertifika.jpg" alt="Deneyap Sertifika"
+                            class="cert-image clickable-image">
+                        <div class="cert-content">
+                            <h5 data-tr="Deneyap Kart Eğitim Sertifikası" data-en="Deneyap Card Training Certificate">
+                                Deneyap Kart Eğitim Sertifikası</h5>
+                            <p class="cert-issuer">T3 Vakfı</p>
+                            <p class="cert-date">Mayıs 2025</p>
+                            <p class="cert-desc"
+                                data-tr="Türkiye Teknoloji Takımı Vakfı (T3 Vakfı) tarafından düzenlenen Deneyap Kart Eğitimi'ne katıldım. Program süresince kartın donanım ve yazılım özellikleri, sensörler, motorlar ve pratik projeler üzerinde uygulamalı deneyim kazandım."
+                                data-en="I participated in the Deneyap Card Training organized by the Türkiye Technology Team Foundation (T3 Foundation). During the program, I gained hands-on experience with the hardware and software features of the board, working with sensors, motors, and practical projects.">
+                                Türkiye Teknoloji Takımı Vakfı (T3 Vakfı) tarafından düzenlenen Deneyap Kart Eğitimi'ne
+                                katıldım. Program süresince kartın donanım ve yazılım özellikleri, sensörler, motorlar
+                                ve pratik projeler üzerinde uygulamalı deneyim kazandım.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cert-card">
+                        <img src="/media/Civil_Society_Volunteerin_5.0_Erasmus_Youthpass_Certificate.jpg"
+                            alt="Erasmus Sertifika" class="cert-image clickable-image">
+                        <div class="cert-content">
+                            <h5 data-tr="Civil Society Volunteering 5.0 – Erasmus+ / Youthpass"
+                                data-en="Civil Society Volunteering 5.0 – Erasmus+ / Youthpass">Civil Society
+                                Volunteering 5.0 – Erasmus+</h5>
+                            <p class="cert-issuer">Erasmus Plus</p>
+                            <p class="cert-date">Mart 2025</p>
+                            <p class="cert-desc"
+                                data-tr="Avrupa Birliği Erasmus+ programı kapsamında Hayrat İnsani Yardım Derneği tarafından düzenlenen projeye katılarak gönüllülük, aktif vatandaşlık, sosyal inovasyon, takım çalışması, insani yardım ve dijital beceriler konularında eğitim aldım ve Avrupa genelinde tanınan Youthpass sertifikasını kazandım."
+                                data-en="Within the scope of the European Union Erasmus+ programme, I participated in a project organized by Hayrat Humanitarian Aid Association, where I received training on volunteering, active citizenship, social innovation, teamwork, humanitarian aid, and digital skills, and earned the Youthpass certificate, which is recognized across Europe.">
+                                Avrupa Birliği Erasmus+ programı kapsamında Hayrat İnsani Yardım Derneği tarafından
+                                düzenlenen projeye katılarak gönüllülük, aktif vatandaşlık, sosyal inovasyon, takım
+                                çalışması, insani yardım ve dijital beceriler konularında eğitim aldım.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cert-card">
+                        <img src="/media/tinkercad.jpg" alt="Tinkercad Sertifika" class="cert-image clickable-image">
+                        <div class="cert-content">
+                            <h5 data-tr="Tinkercad ile Tasarıma Giriş" data-en="Introduction to Design with Tinkercad">
+                                Tinkercad ile Tasarıma Giriş</h5>
+                            <p class="cert-issuer">BTK Akademi</p>
+                            <p class="cert-date">Eylül 2024</p>
+                            <p class="cert-desc"
+                                data-tr="BTK Akademi tarafından düzenlenen Tinkercad ile Tasarıma Giriş çevrimiçi eğitimini başarıyla tamamladım. Program, Tinkercad kullanarak 3D tasarım, modelleme ve dijital prototipleme konularında temel bilgiler sağladı."
+                                data-en="I successfully completed the Introduction to Design with Tinkercad online training organized by BTK Academy. The program provided fundamental knowledge of 3D design, modeling, and digital prototyping using Tinkercad.">
+                                BTK Akademi tarafından düzenlenen Tinkercad ile Tasarıma Giriş çevrimiçi eğitimini
+                                başarıyla tamamladım. Program, Tinkercad kullanarak 3D tasarım, modelleme ve dijital
+                                prototipleme konularında temel bilgiler sağladı.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="cert-card">
+                        <img src="/media/Robotics_Coding_Instructor_Training_Certificate.jpg"
+                            alt="Robotik Eğitmenlik Sertifika" class="cert-image clickable-image">
+                        <div class="cert-content">
+                            <h5 data-tr="Robotik Kodlama Eğitmenlik Sertifikası"
+                                data-en="Robotics Coding Instructor Training Certificate">Robotik Kodlama Eğitmenlik
+                                Sertifikası</h5>
+                            <p class="cert-issuer">Fatih Sultan Mehmet Vakıf Üniversitesi</p>
+                            <p class="cert-date">Temmuz 2024</p>
+                            <p class="cert-desc"
+                                data-tr="Fatih Sultan Mehmet Vakıf Üniversitesi Sürekli Eğitim Merkezi'nin düzenlediği 120 saatlik Robotik Kodlama Eğitmenlik Eğitimi'ni başarıyla tamamladım. Program; robotik sistemler, sensörler, motorlar, blok tabanlı ve Python programlama ile pedagojik eğitim yöntemlerini kapsadı. Ayrıca LEGO Education, Code.org ve Blockly Games üzerine eğitim aldım."
+                                data-en="I have successfully completed the 120-hour Robotics Coding Instructor Training organized by the Continuing Education Center of Fatih Sultan Mehmet Foundation University. The program covered robotics systems, sensors, motors, block-based and Python programming, as well as pedagogical training methods.">
+                                Fatih Sultan Mehmet Vakıf Üniversitesi Sürekli Eğitim Merkezi'nin düzenlediği 120
+                                saatlik Robotik Kodlama Eğitmenlik Eğitimi'ni başarıyla tamamladım.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="cert-card">
+                        <img src="/media/Computer_Applications_and_Operations_Training_Certificate.jpg"
+                            alt="MEB Sertifika" class="cert-image clickable-image">
+                        <div class="cert-content">
+                            <h5 data-tr="Bilgisayar Uygulamaları ve İşletmenlik Eğitimi"
+                                data-en="Computer Applications and Operations Training">Bilgisayar Uygulamaları ve
+                                İşletmenlik Eğitimi</h5>
+                            <p class="cert-issuer">T.C. Milli Eğitim Bakanlığı</p>
+                            <p class="cert-date">Şubat 2022</p>
+                            <p class="cert-desc"
+                                data-tr="T.C. Milli Eğitim Bakanlığı tarafından düzenlenen 163 saatlik Bilgisayar Uygulamaları ve İşletmenlik Eğitimi'ni başarıyla tamamladım. Program; temel bilgisayar okuryazarlığı, ofis yazılımları, dosya yönetimi ve temel BT işletim becerilerini kapsadı."
+                                data-en="I successfully completed the 163-hour Computer Applications and Operations Training organized by the Ministry of National Education (MEB), Republic of Türkiye. The program covered fundamental computer literacy, office software, file management, and essential IT operation skills.">
+                                T.C. Milli Eğitim Bakanlığı tarafından düzenlenen 163 saatlik Bilgisayar Uygulamaları ve
+                                İşletmenlik Eğitimi'ni başarıyla tamamladım.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <p class="section-subtitle" data-tr="Eğitim" data-en="Education">Eğitim</p>
+                    <h2 class="section-title" data-tr="Akademik Geçmişim" data-en="Academic Background">Akademik
+                        Geçmişim</h2>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <i class="bi bi-mortarboard"></i>
+                        </div>
+                        <div class="edu-content">
+                            <h4 data-tr="Yazılım Mühendisliği" data-en="Software Engineering">Yazılım Mühendisliği</h4>
+                            <p class="edu-school">İstanbul Topkapı Üniversitesi</p>
+                            <p class="edu-date" data-tr="2023 - 2027 (Devam Ediyor)" data-en="2023 - 2027 (Ongoing)">
+                                2023 - 2027 (Devam Ediyor)</p>
+                            <p class="edu-desc"
+                                data-tr="3. sınıf öğrencisiyim. Web tasarım, yapay zeka ve mobil uygulama geliştirme alanlarında uzmanlaşıyorum."
+                                data-en="I'm a 3rd year student. Specializing in web design, artificial intelligence, and mobile application development.">
+                                3. sınıf öğrencisiyim. Web tasarım, yapay zeka ve mobil uygulama geliştirme alanlarında
+                                uzmanlaşıyorum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="/media/foto_3.jpg.jpeg" alt="Kadir Gedik at Teknofest" class="edu-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h3 class="footer-brand">
+                        <span class="text-gradient">Kadir</span>Gedik
+                    </h3>
+                    <p class="footer-about"
+                        data-tr="Yazılım mühendisi, web geliştirici ve AI meraklısı. Teknolojiye tutkuyla bağlı, sürekli öğrenen bir geliştirici."
+                        data-en="Software engineer, web developer, and AI enthusiast. A developer passionate about technology and continuous learning.">
+                        Yazılım mühendisi, web geliştirici ve AI meraklısı. Teknolojiye tutkuyla bağlı, sürekli öğrenen
+                        bir geliştirici.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/kkadir8" target="_blank"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kadir-gedik/" target="_blank"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="mailto:kadirgedik777@gmail.com"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title" data-tr="Sayfalar" data-en="Pages">Sayfalar</h5>
+                    <ul class="footer-links">
+                        <li><a href="/" data-tr="Anasayfa" data-en="Home">Anasayfa</a></li>
+                        <li><a href="/about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+                        <li><a href="/projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+                        <li><a href="/contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title" data-tr="Projeler" data-en="Projects">Projeler</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://protocube3d.com" target="_blank">Protocube3D</a></li>
+                        <li><a href="https://kerimgedik.tech" target="_blank">KerimGedik.tech</a></li>
+                        <li><a href="https://loomon.studio" target="_blank">Loomon Studio</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title" data-tr="İletişim" data-en="Contact">İletişim</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <a href="mailto:kadirgedik777@gmail.com">kadirgedik777@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>İstanbul, Türkiye</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-globe"></i>
+                            <a href="https://kadirgedik.engineer">kadirgedik.engineer</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <p>© 2026 Kadir Gedik. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları
+                        saklıdır.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/main.js"></script>
+    <script>AOS.init({ duration: 800, once: true });</script>
+
+    <!-- Image Lightbox Modal -->
+    <div class="image-lightbox" id="imageLightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+            <div class="lightbox-caption">
+                <h4 id="lightboxTitle"></h4>
+                <p id="lightboxDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Image Lightbox functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add click event to all clickable images
+            const clickableImages = document.querySelectorAll('.timeline-image, .event-image, .about-image, .edu-image, .cert-image');
+
+            clickableImages.forEach(img => {
+                img.classList.add('clickable-image');
+                img.addEventListener('click', function () {
+                    openLightbox(this.src, this.alt);
+                });
+            });
+        });
+
+        function openLightbox(src, alt) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxDesc = document.getElementById('lightboxDesc');
+
+            lightboxImage.src = src;
+            lightboxImage.alt = alt;
+            lightboxTitle.textContent = alt;
+
+            // Get context description based on alt text
+            const descriptions = {
+                'Hayrat Web Development': 'Hayrat İnsani Yardım Derneği web sitesi geliştirme çalışması',
+                'Teknofest Club': 'Teknofest Kulübü etkinlik ve workshop fotoğrafı',
+                'Kidzz Academy': 'Kidzz Akademi kodlama eğitimi',
+                'Kidzz Academy Kadir': 'Kidzz Akademi\'de kodlama eğitmenliği',
+                'Üpo Academy': 'Üpo Akademi robotik kodlama dersleri',
+                'Hezarfen Eğitim 1': 'Hezarfen Hareketi LEGO robotik eğitimi',
+                'Hezarfen Eğitim 2': 'Hezarfen Hareketi öğrenci çalışmaları',
+                'TEKNOFEST 2025 Görevli': 'TEKNOFEST 2025 İstanbul - Gönüllü Görevli olarak sahada',
+                'TEKNOFEST 2024 Adana': 'TEKNOFEST 2024 Adana - Hezarfen Hareketi standında',
+                'TEKNOFEST 2024 Stand': 'TEKNOFEST 2024 festival alanı ve uçak gösterisi',
+                'Kadir Gedik': 'Profil fotoğrafı',
+                'Kadir Gedik at Teknofest': 'Teknofest etkinliğinde',
+                // Certificate descriptions - Detailed
+                'TEKNOFEST 2025 Sertifika': 'Dünyanın en büyük havacılık, uzay ve teknoloji festivali kapsamında saha operasyonları, takım koordinasyonu ve etkinlik yönetimi süreçlerinde aktif rol aldım. Selçuk Bayraktar imzalı teşekkür belgesi.',
+                'Deneyap Sertifika': 'Türkiye Teknoloji Takımı Vakfı (T3 Vakfı) tarafından düzenlenen Deneyap Kart Eğitimi\'ne katıldım. Program süresince kartın donanım ve yazılım özellikleri, sensörler, motorlar ve pratik projeler üzerinde uygulamalı deneyim kazandım.',
+                'Erasmus Sertifika': 'Avrupa Birliği Erasmus+ programı kapsamında Hayrat İnsani Yardım Derneği tarafından düzenlenen projeye katılarak gönüllülük, aktif vatandaşlık, sosyal inovasyon, takım çalışması, insani yardım ve dijital beceriler konularında eğitim aldım ve Avrupa genelinde tanınan Youthpass sertifikasını kazandım.',
+                'Tinkercad Sertifika': 'BTK Akademi tarafından düzenlenen Tinkercad ile Tasarıma Giriş çevrimiçi eğitimini başarıyla tamamladım. Program, Tinkercad kullanarak 3D tasarım, modelleme ve dijital prototipleme konularında temel bilgiler sağladı.',
+                'Robotik Eğitmenlik Sertifika': 'Fatih Sultan Mehmet Vakıf Üniversitesi Sürekli Eğitim Merkezi\'nin düzenlediği 120 saatlik Robotik Kodlama Eğitmenlik Eğitimi\'ni başarıyla tamamladım. Program; robotik sistemler, sensörler, motorlar, blok tabanlı ve Python programlama ile pedagojik eğitim yöntemlerini kapsadı.',
+                'MEB Sertifika': 'T.C. Milli Eğitim Bakanlığı tarafından düzenlenen 163 saatlik Bilgisayar Uygulamaları ve İşletmenlik Eğitimi\'ni başarıyla tamamladım. Program; temel bilgisayar okuryazarlığı, ofis yazılımları, dosya yönetimi ve temel BT işletim becerilerini kapsadı.'
+            };
+
+            lightboxDesc.textContent = descriptions[alt] || alt;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on background click
+        document.getElementById('imageLightbox').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+
+</html>

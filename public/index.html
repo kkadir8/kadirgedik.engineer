@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kadir Gedik - Yazılım Mühendisi, Web Geliştirici, AI Meraklısı. Teknofest, robotik kodlama ve web tasarım projeleri.">
+    <meta name="keywords" content="Kadir Gedik, yazılım mühendisi, web developer, AI, Teknofest, robotik">
+    <title>Kadir Gedik | Software Engineer</title>
+    <link rel="icon" type="image/svg+xml" href="/media/admin_panel_logo.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo text-gradient">KG</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <span class="text-gradient">Kadir</span><span style="color: var(--text-secondary);">Gedik</span>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/" data-tr="Anasayfa" data-en="Home">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about" data-tr="Hakkımda" data-en="About">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/projects" data-tr="Projeler" data-en="Projects">Projeler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact" data-tr="İletişim" data-en="Contact">İletişim</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div class="lang-switcher">
+                        <button class="btn-lang active" data-lang="tr">TR</button>
+                        <button class="btn-lang" data-lang="en">EN</button>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <a href="https://github.com/kkadir8" target="_blank" class="social-link">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/kadir-gedik/" target="_blank" class="social-link">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Animated Background -->
+        <div class="hero-bg">
+            <div class="grid-lines"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                        <!-- Greeting Badge -->
+                        <div class="hero-greeting">
+                            <span class="wave">👋</span>
+                            <span data-tr="Merhaba, ben" data-en="Hi, I'm">Merhaba, ben</span>
+                        </div>
+
+                        <!-- Main Title -->
+                        <h1 class="hero-title">
+                            <span class="line">
+                                <span class="text-gradient">Kadir</span>
+                            </span>
+                            <span class="line">Gedik</span>
+                        </h1>
+
+                        <!-- Subtitle -->
+                        <p class="hero-subtitle">
+                            <span data-tr="Yazılım Mühendisi" data-en="Software Engineer">Yazılım Mühendisi</span> &
+                            <span class="highlight typing-text"
+                                data-texts="Web Geliştirici|AI Meraklısı|Robotik Eğitmen">Web Geliştirici</span>
+                        </p>
+
+                        <!-- Description -->
+                        <p class="hero-description"
+                            data-tr="Yazılım mühendisliği ve yapay zeka mühendisliği alanlarında kendimi geliştirip, bu bilgileri web tasarım, mobil uygulama ve AI otomasyon projelerinde birleştiriyorum."
+                            data-en="I'm developing myself in software engineering and AI, combining this knowledge in web design, mobile apps, and AI automation projects.">
+                            Yazılım mühendisliği ve yapay zeka mühendisliği alanlarında kendimi geliştirip, bu bilgileri
+                            web tasarım, mobil uygulama ve AI otomasyon projelerinde birleştiriyorum.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="hero-buttons">
+                            <a href="/projects" class="btn btn-primary magnetic-btn">
+                                <i class="bi bi-folder2-open"></i>
+                                <span data-tr="Projelerimi Gör" data-en="View Projects">Projelerimi Gör</span>
+                            </a>
+                            <a href="/contact" class="btn btn-outline magnetic-btn">
+                                <i class="bi bi-chat-dots"></i>
+                                <span data-tr="İletişime Geç" data-en="Contact Me">İletişime Geç</span>
+                            </a>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div class="tech-stack">
+                            <span class="tech-label" data-tr="Kullandığım Teknolojiler" data-en="Tech Stack">Tech
+                                Stack</span>
+                            <div class="tech-icons">
+                                <div class="tech-icon" title="JavaScript"><i class="bi bi-filetype-js"></i></div>
+                                <div class="tech-icon" title="Python"><i class="bi bi-filetype-py"></i></div>
+                                <div class="tech-icon" title="Webflow"><i class="bi bi-window-sidebar"></i></div>
+                                <div class="tech-icon" title="React"><i class="bi bi-lightning-charge"></i></div>
+                                <div class="tech-icon" title="Node.js"><i class="bi bi-hexagon"></i></div>
+                                <div class="tech-icon" title="AI/ML"><i class="bi bi-robot"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hero-image-wrapper" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <!-- Floating Rings -->
+                        <div class="image-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+
+                        <!-- Interactive SVG Avatar (Robb Owen Premium Flat Vector Style) -->
+                        <!-- Interactive Avatar with Custom SVGs -->
+                        <div class="profile-image-container avatar-wrapper" id="avatarContainer">
+                            <!-- Base Face Image -->
+                            <img src="/media/avatar-face.svg" alt="Avatar Face" class="avatar-face">
+
+                            <!-- Eyes Container -->
+                            <div class="eyes-container">
+                                <!-- Left Eye -->
+                                <div class="eye eye-left">
+                                    <div class="eye-socket">
+                                        <img src="/media/pupil.svg" class="eye-pupil" alt="Pupil">
+                                    </div>
+                                </div>
+                                <!-- Right Eye -->
+                                <div class="eye eye-right">
+                                    <div class="eye-socket">
+                                        <img src="/media/pupil.svg" class="eye-pupil" alt="Pupil">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badges -->
+                        <div class="floating-badge badge-1">
+                            <i class="bi bi-code-slash"></i>
+                            <span data-tr="Yazılım Mühendisi" data-en="Software Engineer">Yazılım Mühendisi</span>
+                        </div>
+
+                        <div class="floating-badge badge-2">
+                            <i class="bi bi-folder"></i>
+                            <span>6+ <span data-tr="Proje" data-en="Projects">Proje</span></span>
+                        </div>
+
+                        <div class="floating-badge badge-3">
+                            <i class="bi bi-robot"></i>
+                            <span data-tr="AI Meraklısı" data-en="AI Enthusiast">AI Meraklısı</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span data-tr="Aşağı Kaydır" data-en="Scroll Down">Scroll</span>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="projects-section py-5">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <span class="section-subtitle" data-tr="Son Çalışmalarım" data-en="Recent Work">Son Çalışmalarım</span>
+                <h2 class="section-title" data-tr="Öne Çıkan Projeler" data-en="Featured Projects">Öne Çıkan Projeler
+                </h2>
+            </div>
+
+            <div class="row g-4" id="featuredProjects">
+                <!-- Projects loaded dynamically -->
+                <div class="col-12 text-center">
+                    <div class="loader-bar" style="width: 100px; margin: 2rem auto;">
+                        <div class="loader-progress"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="/projects" class="btn btn-outline magnetic-btn">
+                    <span data-tr="Tüm Projeleri Gör" data-en="View All Projects">Tüm Projeleri Gör</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Preview -->
+    <section class="experience-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <span class="section-subtitle" data-tr="Kariyer" data-en="Career">Kariyer</span>
+                    <h2 class="section-title" data-tr="Deneyimlerim" data-en="Experience">Deneyimlerim</h2>
+                    <p class="text-secondary mb-4"
+                        data-tr="Web geliştirme, robotik kodlama eğitimi ve Teknofest organizasyonlarında edindiğim deneyimler."
+                        data-en="Experience in web development, robotics coding education, and Teknofest organizations.">
+                        Web geliştirme, robotik kodlama eğitimi ve Teknofest organizasyonlarında edindiğim deneyimler.
+                    </p>
+                    <button onclick="downloadCV()" class="btn btn-glass magnetic-btn">
+                        <span data-tr="CV İndir" data-en="Download CV">CV İndir</span>
+                        <i class="bi bi-download"></i>
+                    </button>
+                </div>
+
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="experience-list">
+                        <!-- New Loomon Studio Entry -->
+                        <div class="experience-item">
+                            <div class="exp-icon" style="overflow: hidden;"><img src="/media/loomon_ai_logo.png"
+                                    alt="Loomon"
+                                    style="width: 130%; height: 130%; border-radius: 8px; object-fit: cover; margin: -15%;">
+                            </div>
+                            <div class="exp-content">
+                                <h4 data-tr="Creative Developer & AI Specialist"
+                                    data-en="Creative Developer & AI Specialist">Creative Developer & AI Specialist</h4>
+                                <p class="exp-company">Loomon Studio</p>
+                                <p class="exp-date" data-tr="Aralık 2025 - Devam Ediyor | Hibrit"
+                                    data-en="Dec 2025 - Present | Hybrid">Aralık 2025 - Devam Ediyor</p>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="exp-icon"><i class="bi bi-code-square"></i></div>
+                            <div class="exp-content">
+                                <h4>Web Developer</h4>
+                                <p class="exp-company">Hayrat Yardım (Hezarfen Hareketi)</p>
+                                <p class="exp-date" data-tr="Mar 2025 - Devam Ediyor | Hibrit"
+                                    data-en="Mar 2025 - Present | Hybrid">Mar 2025 - Devam Ediyor</p>
+                            </div>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="exp-icon"><i class="bi bi-rocket-takeoff"></i></div>
+                            <div class="exp-content">
+                                <h4 data-tr="Teknofest Kulübü Başkanı" data-en="Teknofest Club President">Teknofest
+                                    Kulübü Başkanı</h4>
+                                <p class="exp-company">İstanbul Topkapı Üniversitesi</p>
+                                <p class="exp-date" data-tr="Ara 2024 - Eki 2025" data-en="Dec 2024 - Oct 2025">Ara 2024
+                                    - Eki 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-folder"></i></div>
+                        <div class="stat-number" data-count="15">0</div>
+                        <p class="stat-label" data-tr="Tamamlanan Proje" data-en="Projects Completed">Tamamlanan Proje
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-award"></i></div>
+                        <div class="stat-number" data-count="6">0</div>
+                        <p class="stat-label" data-tr="Sertifika" data-en="Certificates">Sertifika</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-people"></i></div>
+                        <div class="stat-number" data-count="100">0</div>
+                        <p class="stat-label" data-tr="Eğitim Verilen Öğrenci" data-en="Students Taught">Öğrenci</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-code-slash"></i></div>
+                        <div class="stat-number" data-count="3">0</div>
+                        <p class="stat-label" data-tr="Yıl Tecrübe" data-en="Years Experience">Yıl Tecrübe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card" data-aos="zoom-in">
+                <h2 data-tr="Birlikte Çalışalım mı?" data-en="Let's Work Together?">Birlikte Çalışalım mı?</h2>
+                <p data-tr="Yeni projelere ve fırsatlara her zaman açığım. Hadi konuşalım!"
+                    data-en="I'm always open to new projects and opportunities. Let's talk!">Yeni projelere ve
+                    fırsatlara her zaman açığım. Hadi konuşalım!</p>
+                <a href="/contact" class="btn btn-glass magnetic-btn">
+                    <i class="bi bi-envelope"></i>
+                    <span data-tr="İletişime Geç" data-en="Get in Touch">İletişime Geç</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal-backdrop" onclick="closeProjectModal()"></div>
+        <div class="project-modal-content">
+            <button class="project-modal-close" onclick="closeProjectModal()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+            <!-- Media Carousel -->
+            <div class="project-media-section">
+                <div class="project-media-carousel" id="projectMediaCarousel">
+                    <img class="project-media-main" id="projectMainMedia" src="" alt="Project Media">
+                </div>
+                <div class="project-media-thumbnails" id="projectThumbnails"></div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="project-details-section">
+                <h2 class="project-modal-title" id="projectModalTitle"></h2>
+                <p class="project-modal-description" id="projectModalDescription"></p>
+
+                <div class="project-tech-tags" id="projectTechTags"></div>
+
+                <div class="project-modal-actions">
+                    <a href="#" class="btn btn-primary project-contact-btn" id="projectContactBtn">
+                        <i class="bi bi-envelope"></i>
+                        <span data-tr="Bu proje hakkında iletişime geç" data-en="Contact about this project">Bu proje
+                            hakkında iletişime geç</span>
+                    </a>
+                    <a href="#" class="btn btn-outline" id="projectGithubBtn" target="_blank" style="display: none;">
+                        <i class="bi bi-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="btn btn-outline" id="projectLiveBtn" target="_blank" style="display: none;">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                        <span data-tr="Siteyi Ziyaret Et" data-en="Visit Site">Siteyi Ziyaret Et</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h3 class="footer-brand">
+                        <span class="text-gradient">Kadir</span>Gedik
+                    </h3>
+                    <p class="footer-about"
+                        data-tr="Yazılım mühendisi, web geliştirici ve AI meraklısı. Teknolojiye tutkuyla bağlı, sürekli öğrenen bir geliştirici."
+                        data-en="Software engineer, web developer, and AI enthusiast. A developer passionate about technology and continuous learning.">
+                        Yazılım mühendisi, web geliştirici ve AI meraklısı. Teknolojiye tutkuyla bağlı, sürekli öğrenen
+                        bir geliştirici.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://github.com/kkadir8" target="_blank"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kadir-gedik/" target="_blank"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="mailto:kadirgedik777@gmail.com"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title" data-tr="Sayfalar" data-en="Pages">Sayfalar</h5>
+                    <ul class="footer-links">
+                        <li><a href="/" data-tr="Anasayfa" data-en="Home">Anasayfa</a></li>
+                        <li><a href="/about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+                        <li><a href="/projects" data-tr="Projeler" data-en="Projects">Projeler</a></li>
+                        <li><a href="/contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title" data-tr="Projeler" data-en="Projects">Projeler</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://protocube3d.com" target="_blank">Protocube3D</a></li>
+                        <li><a href="https://kerimgedik.tech" target="_blank">KerimGedik.tech</a></li>
+                        <li><a href="https://loomon.studio" target="_blank">Loomon Studio</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title" data-tr="İletişim" data-en="Contact">İletişim</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="bi bi-envelope"></i>
+                            <a href="mailto:kadirgedik777@gmail.com">kadirgedik777@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="bi bi-geo-alt"></i>
+                            <span>İstanbul, Türkiye</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-globe"></i>
+                            <a href="https://kadirgedik.engineer">kadirgedik.engineer</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <p>© 2026 Kadir Gedik. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları
+                        saklıdır.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/projects.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Kadir Gedik</title>
+    <link rel="icon" type="image/svg+xml" href="/media/admin_panel_logo.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Admin Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center">
+                <!-- Mobile Toggle -->
+                <button class="btn btn-link text-white d-lg-none me-2 p-0" onclick="toggleSidebar()">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+
+                <!-- Welcome Text (Hidden on mobile) -->
+                <span class="navbar-text text-white fw-bold d-none d-md-block" id="welcomeText"
+                    style="font-size: 0.95rem;">
+                    Hoş geldin, Admin
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-2 gap-md-3">
+                <button class="btn btn-dark btn-sm rounded-circle refresh-btn" onclick="refreshContent()"
+                    title="Yenile">
+                    <i class="bi bi-arrow-clockwise" id="refreshIcon"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm" onclick="logout()">
+                    <i class="bi bi-box-arrow-right me-1"></i> <span class="d-none d-sm-inline">Çıkış</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-section="projects">
+                    <i class="bi bi-folder"></i>
+                    <span>Projeler</span>
+                </a>
+                <a href="#" class="sidebar-link" data-section="messages">
+                    <i class="bi bi-envelope"></i>
+                    <span>Mesajlar</span>
+                    <span class="badge bg-danger" id="unreadBadge">0</span>
+                </a>
+                <hr>
+                <a href="/" class="sidebar-link">
+                    <i class="bi bi-globe"></i>
+                    <span>Siteyi Görüntüle</span>
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer with Logo -->
+            <div class="sidebar-logo-container">
+                <img src="/media/admin_panel_logo.svg" alt="Admin Panel Logo" class="sidebar-logo">
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Projects Section -->
+            <section id="projectsSection" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="bi bi-folder me-2"></i>Projeler</h2>
+                    <button class="btn btn-primary" onclick="openProjectModal()">
+                        <i class="bi bi-plus-lg me-1"></i> Yeni Proje
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Görsel</th>
+                                <th>Başlık</th>
+                                <th>Kategori</th>
+                                <th>Öne Çıkan</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsTable">
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <div class="spinner-border spinner-border-sm"></div> Yükleniyor...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messagesSection" class="admin-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="bi bi-envelope me-2"></i>Mesajlar</h2>
+                </div>
+
+                <div id="messagesList">
+                    <div class="text-center text-muted py-4">
+                        <div class="spinner-border spinner-border-sm"></div> Yükleniyor...
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="projectModalTitle">Yeni Proje</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="projectForm">
+                        <input type="hidden" id="projectId">
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Başlık (TR) *</label>
+                                <input type="text" class="form-control" id="projectTitle" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Başlık (EN)</label>
+                                <input type="text" class="form-control" id="projectTitleEn">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Açıklama (TR) *</label>
+                                <textarea class="form-control" id="projectDesc" rows="3" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Açıklama (EN)</label>
+                                <textarea class="form-control" id="projectDescEn" rows="3"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Kategori *</label>
+                                <select class="form-select" id="projectCategory" required>
+                                    <option value="web">Web Development</option>
+                                    <option value="ai">AI / ML</option>
+                                    <option value="mobile">Mobile</option>
+                                    <option value="robotics">Robotics</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Görsel 1 (Ana Görsel) *</label>
+                                <input type="text" class="form-control" id="projectImage1"
+                                    placeholder="/media/project.jpg" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Görsel 2 (Opsiyonel)</label>
+                                <input type="text" class="form-control" id="projectImage2"
+                                    placeholder="/media/project2.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Görsel 3 (Opsiyonel)</label>
+                                <input type="text" class="form-control" id="projectImage3"
+                                    placeholder="/media/project3.jpg">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Canlı Site URL</label>
+                                <input type="url" class="form-control" id="projectLiveUrl" placeholder="https://...">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">GitHub URL</label>
+                                <input type="url" class="form-control" id="projectGithubUrl"
+                                    placeholder="https://github.com/...">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Teknolojiler (virgülle ayır)</label>
+                                <input type="text" class="form-control" id="projectTech"
+                                    placeholder="JavaScript, React, Node.js">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check mt-4">
+                                    <input type="checkbox" class="form-check-input" id="projectFeatured">
+                                    <label class="form-check-label">Öne Çıkan Proje</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProject()">
+                        <i class="bi bi-check-lg me-1"></i> Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            padding-top: 90px;
+            /* Navbar height (80px) + spacing */
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: var(--bg-secondary) !important;
+            /* Sidebar ile aynı renk */
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            height: 80px;
+            /* Increased from 60px */
+            width: 100%;
+            left: 0;
+            z-index: 1050;
+        }
+
+        /* Sidebar Logo Styles */
+        .sidebar-logo-container {
+            margin-top: auto;
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+        }
+
+        .sidebar-logo {
+            width: 80%;
+            height: auto;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.1));
+        }
+
+        .sidebar-logo:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.3));
+        }
+
+        .refresh-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+        }
+
+        .refresh-btn:hover {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .refresh-btn:active i {
+            transform: rotate(180deg);
+        }
+
+        .refresh-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Layout Structure */
+        .admin-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+            /* Adjusted for new height */
+        }
+
+        .admin-sidebar {
+            width: 240px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            padding: 0;
+            position: fixed;
+            top: 80px;
+            /* Navbar Altı (80px) */
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 0.75rem;
+            overflow-y: auto;
+        }
+
+        .sidebar-nav hr {
+            border-color: var(--border-color);
+            margin: 1rem 0;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--border-radius-sm);
+            transition: var(--transition-fast);
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-primary);
+        }
+
+        .sidebar-link .badge {
+            margin-left: auto;
+        }
+
+        .admin-main {
+            flex: 1;
+            margin-left: 240px;
+            padding: 2rem;
+        }
+
+        .admin-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 991.98px) {
+            .navbar {
+                width: 100%;
+                left: 0;
+            }
+
+            .admin-sidebar {
+                display: none;
+                /* Varsayılan gizli */
+                width: 100%;
+                position: fixed;
+                top: 80px;
+                /* Navbar updated height */
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 2000;
+                background: var(--bg-secondary);
+                border-right: none;
+                overflow-y: auto;
+            }
+
+            .admin-sidebar.mobile-visible {
+                display: flex;
+                /* Toggle ile açılır */
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .sidebar-logo-container {
+                padding-bottom: 80px;
+            }
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table-dark {
+            --bs-table-bg: transparent;
+        }
+
+        .table th {
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-color: var(--border-color);
+        }
+
+        .table td {
+            vertical-align: middle;
+            border-color: var(--border-color);
+        }
+
+        .project-thumb {
+            width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .message-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: var(--transition-fast);
+        }
+
+        .message-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .message-card.unread {
+            border-left: 3px solid var(--accent-primary);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.75rem;
+        }
+
+        .message-from {
+            font-weight: 600;
+        }
+
+        .message-email {
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+        }
+
+        .message-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .message-body {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-control,
+        .form-select {
+            background: var(--bg-tertiary);
+            border-color: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+        }
+
+        @media (max-width: 991.98px) {
+            .admin-sidebar {
+                width: 200px;
+            }
+
+            .admin-main {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .admin-sidebar {
+                display: none;
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+        }
+    </style>
+
+    <script>
+        const API_BASE = '';
+        let projectModal;
+        let currentSection = 'projects'; // Track active section
+
+        // Check auth on load
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/login';
+                return;
+            }
+
+            // Update welcome text
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            document.getElementById('welcomeText').textContent = `Hoş geldin, ${user.name || 'Admin'}`;
+
+            // Init modal
+            projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+
+            // Load data
+            loadProjects();
+            loadMessages();
+
+            // Section switching
+            document.querySelectorAll('.sidebar-link[data-section]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const section = link.dataset.section;
+                    currentSection = section; // Update current section
+
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    document.querySelectorAll('.admin-section').forEach(s => s.style.display = 'none');
+                    document.getElementById(section + 'Section').style.display = 'block';
+
+                    // Auto refresh when switching
+                    if (section === 'projects') loadProjects();
+                    if (section === 'messages') loadMessages();
+                });
+            });
+        });
+
+        async function refreshContent() {
+            const btn = document.querySelector('.refresh-btn');
+            const icon = document.getElementById('refreshIcon');
+
+            // Add animation
+            icon.classList.add('refresh-spin');
+            btn.disabled = true;
+
+            try {
+                if (currentSection === 'projects') {
+                    await loadProjects();
+                } else if (currentSection === 'messages') {
+                    await loadMessages();
+                }
+
+                // Show success feedback (optional, maybe just stop spin)
+            } catch (e) {
+                console.error('Refresh failed', e);
+            } finally {
+                // Remove animation after min 500ms to show effect
+                setTimeout(() => {
+                    icon.classList.remove('refresh-spin');
+                    btn.disabled = false;
+                }, 500);
+            }
+        }
+
+        function getAuthHeaders() {
+            return {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            };
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+        }
+
+        // Projects CRUD
+        async function loadProjects() {
+            try {
+                const response = await fetch(`${API_BASE}/api/projects`);
+                const projects = await response.json();
+
+                const tbody = document.getElementById('projectsTable');
+
+                if (projects.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">Henüz proje yok</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = projects.map(p => `
+                    <tr>
+                        <td><img src="${p.imageUrl || '/media/default-project.jpg'}" class="project-thumb" onerror="this.src='/media/default-project.jpg'"></td>
+                        <td>${p.title}</td>
+                        <td><span class="badge bg-secondary">${p.category}</span></td>
+                        <td>${p.featured ? '<i class="bi bi-star-fill text-warning"></i>' : '-'}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary me-1" onclick="editProject('${p._id}')">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger" onclick="deleteProject('${p._id}')">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading projects:', error);
+            }
+        }
+
+        function openProjectModal(project = null) {
+            document.getElementById('projectForm').reset();
+            document.getElementById('projectId').value = '';
+            document.getElementById('projectModalTitle').textContent = project ? 'Projeyi Düzenle' : 'Yeni Proje';
+
+            if (project) {
+                document.getElementById('projectId').value = project._id;
+                document.getElementById('projectTitle').value = project.title || '';
+                document.getElementById('projectTitleEn').value = project.title_en || '';
+                document.getElementById('projectDesc').value = project.description || '';
+                document.getElementById('projectDescEn').value = project.description_en || '';
+                document.getElementById('projectCategory').value = project.category || 'web';
+
+                // Handle images array (or fallback to imageUrl)
+                const images = project.images && project.images.length > 0
+                    ? project.images
+                    : [project.imageUrl || ''];
+                document.getElementById('projectImage1').value = images[0] || '';
+                document.getElementById('projectImage2').value = images[1] || '';
+                document.getElementById('projectImage3').value = images[2] || '';
+
+                document.getElementById('projectLiveUrl').value = project.liveUrl || '';
+                document.getElementById('projectGithubUrl').value = project.githubUrl || '';
+                document.getElementById('projectTech').value = (project.technologies || []).join(', ');
+                document.getElementById('projectFeatured').checked = project.featured || false;
+            }
+
+            projectModal.show();
+        }
+
+        async function editProject(id) {
+            try {
+                const response = await fetch(`${API_BASE}/api/projects/${id}`);
+                const project = await response.json();
+                openProjectModal(project);
+            } catch (error) {
+                alert('Proje yüklenemedi');
+            }
+        }
+
+        async function saveProject() {
+            const id = document.getElementById('projectId').value;
+
+            // Collect images from 3 input fields
+            const images = [
+                document.getElementById('projectImage1').value,
+                document.getElementById('projectImage2').value,
+                document.getElementById('projectImage3').value
+            ].filter(img => img && img.trim() !== '');
+
+            const data = {
+                title: document.getElementById('projectTitle').value,
+                title_en: document.getElementById('projectTitleEn').value,
+                description: document.getElementById('projectDesc').value,
+                description_en: document.getElementById('projectDescEn').value,
+                category: document.getElementById('projectCategory').value,
+                imageUrl: images[0] || '', // First image as main imageUrl for backward compatibility
+                images: images, // All images array
+                liveUrl: document.getElementById('projectLiveUrl').value,
+                githubUrl: document.getElementById('projectGithubUrl').value,
+                technologies: document.getElementById('projectTech').value.split(',').map(t => t.trim()).filter(t => t),
+                featured: document.getElementById('projectFeatured').checked
+            };
+
+            try {
+                const url = id ? `${API_BASE}/api/projects/${id}` : `${API_BASE}/api/projects`;
+                const method = id ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method,
+                    headers: getAuthHeaders(),
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    projectModal.hide();
+                    loadProjects();
+                } else {
+                    const result = await response.json();
+                    alert(result.message || 'Kaydetme başarısız');
+                }
+            } catch (error) {
+                alert('Kaydetme hatası');
+            }
+        }
+
+        async function deleteProject(id) {
+            if (!confirm('Bu projeyi silmek istediğinize emin misiniz?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/projects/${id}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders()
+                });
+
+                if (response.ok) {
+                    loadProjects();
+                } else {
+                    alert('Silme başarısız');
+                }
+            } catch (error) {
+                alert('Silme hatası');
+            }
+        }
+
+        // Messages
+        async function loadMessages() {
+            try {
+                const response = await fetch(`${API_BASE}/api/contact`, {
+                    headers: getAuthHeaders()
+                });
+                const messages = await response.json();
+
+                const container = document.getElementById('messagesList');
+                const unreadCount = messages.filter(m => !m.read).length;
+                document.getElementById('unreadBadge').textContent = unreadCount;
+
+                if (messages.length === 0) {
+                    container.innerHTML = '<div class="text-center text-muted py-4">Henüz mesaj yok</div>';
+                    return;
+                }
+
+                container.innerHTML = messages.map(m => `
+                    <div class="message-card ${m.read ? '' : 'unread'}">
+                        <div class="message-header">
+                            <div>
+                                <div class="message-from">${m.name}</div>
+                                <div class="message-email">${m.email}</div>
+                            </div>
+                            <div class="text-end">
+                                <div class="message-date">${new Date(m.createdAt).toLocaleDateString('tr-TR')}</div>
+                                <button class="btn btn-sm btn-outline-danger mt-1" onclick="deleteMessage('${m._id}')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        ${m.subject ? `<div class="fw-bold mb-2">${m.subject}</div>` : ''}
+                        <div class="message-body">${m.message}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        async function deleteMessage(id) {
+            if (!confirm('Bu mesajı silmek istediğinize emin misiniz?')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/contact/${id}`, {
+                    method: 'DELETE',
+                    headers: getAuthHeaders()
+                });
+
+                if (response.ok) {
+                    loadMessages();
+                }
+            } catch (error) {
+                alert('Silme hatası');
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.admin-sidebar');
+            sidebar.classList.toggle('mobile-visible');
+        }
+
+        // Close sidebar when clicking a link on mobile
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 992) {
+                        document.querySelector('.admin-sidebar').classList.remove('mobile-visible');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
