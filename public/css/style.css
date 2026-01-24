@@ -1984,13 +1984,14 @@ section {
 
     .hero-image-wrapper {
         margin-bottom: 2rem;
+        margin-top: 3rem;
         display: flex;
         justify-content: center;
     }
 
     .profile-image-container {
-        width: 250px;
-        height: 250px;
+        width: 375px;
+        height: 375px;
     }
 
     .eyes-container {
@@ -2019,8 +2020,8 @@ section {
 /* Small Mobile Devices */
 @media (max-width: 480px) {
     .profile-image-container {
-        width: 220px;
-        height: 220px;
+        width: 330px;
+        height: 330px;
     }
 
     .eyes-container {
