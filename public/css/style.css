@@ -2001,12 +2001,12 @@ section {
 
     /* Mobilde sağ göz */
     .eye:last-child {
-        transform: translateX(2px);
+        transform: translateX(7px);
     }
 
 
     .eyes-container {
-        top: 45%;
+        top: 44%;
         width: 17%;
         height: 28px;
     }
@@ -2041,7 +2041,7 @@ section {
     }
 
     .eyes-container {
-        top: 42%;
+        top: 41%;
         width: 16%;
         height: 24px;
     }
