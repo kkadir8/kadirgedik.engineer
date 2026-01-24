@@ -1972,7 +1972,7 @@ section {
     }
 
     .eyes-container {
-        top: 38%;
+        top: 40%;
     }
 }
 
@@ -2001,7 +2001,7 @@ section {
 
     /* Mobilde sağ göz */
     .eye:last-child {
-        transform: translateX(-2px);
+        transform: translateX(2px);
     }
 
 
@@ -2041,7 +2041,7 @@ section {
     }
 
     .eyes-container {
-        top: 40%;
+        top: 42%;
         width: 16%;
         height: 24px;
     }
