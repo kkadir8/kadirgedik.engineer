@@ -2001,7 +2001,7 @@ section {
 
     /* Mobilde sağ göz */
     .eye:last-child {
-        transform: translateX(9px);
+        transform: translateX(8px);
     }
 
 
