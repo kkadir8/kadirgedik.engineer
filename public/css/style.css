@@ -1994,8 +1994,19 @@ section {
         height: 375px;
     }
 
+    /* Mobilde sol göz */
+    .eye:first-child {
+        transform: translateX(-2px);
+    }
+
+    /* Mobilde sağ göz */
+    .eye:last-child {
+        transform: translateX(-2px);
+    }
+
+
     .eyes-container {
-        top: 42%;
+        top: 45%;
         width: 17%;
         height: 28px;
     }
