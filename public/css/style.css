@@ -1984,7 +1984,7 @@ section {
 
     .hero-image-wrapper {
         margin-bottom: 2rem;
-        margin-top: 3rem;
+        margin-top: 5rem;
         display: flex;
         justify-content: center;
     }
@@ -1995,7 +1995,7 @@ section {
     }
 
     .eyes-container {
-        top: 36%;
+        top: 42%;
         width: 17%;
         height: 28px;
     }
@@ -2025,7 +2025,7 @@ section {
     }
 
     .eyes-container {
-        top: 35%;
+        top: 40%;
         width: 16%;
         height: 24px;
     }
