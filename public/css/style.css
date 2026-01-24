@@ -2040,7 +2040,7 @@ section {
 
     /* Mobilde scroll indicator gizle */
     .scroll-indicator {
-        display: none;
+        display: none !important;
     }
 }
 
