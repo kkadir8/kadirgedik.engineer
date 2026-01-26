@@ -189,7 +189,7 @@ function createProjectCard(project, index) {
 
     // Show icon placeholder if no valid image
     const imageContent = hasValidImage
-        ? `<img src="${imageUrl}" alt="${title}" style="width: 100%; height: 100%; object-fit: contain; background: #0a0a0f;">`
+        ? `<img src="${imageUrl}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover;">`
         : `<div class="project-placeholder"><i class="bi bi-code-slash"></i></div>`;
 
     return `

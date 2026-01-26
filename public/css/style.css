@@ -2162,3 +2162,24 @@ section {
         opacity: 0;
     }
 }
+
+/* ============================================
+   PROJECT CARD IMAGE - 16:9 ASPECT RATIO
+   ============================================ */
+
+.project-image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #0a0a0f;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
