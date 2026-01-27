@@ -451,13 +451,15 @@ document.addEventListener('DOMContentLoaded', function () {
     loadAllProjects();
 });
 
-// Re-render when language changes
-// Re-render when language changes (synced with main.js via event)
-window.addEventListener('languageChanged', function (e) {
+// Global function to update projects language (called from main.js)
+window.updateProjectsLanguage = function () {
     if (document.getElementById('featuredProjects')) {
         loadFeaturedProjects();
     }
     if (document.getElementById('allProjects')) {
         renderProjects(window.allProjects || []);
     }
-});
+};
+
+// Fallback: Listen for event just in case
+window.addEventListener('languageChanged', window.updateProjectsLanguage);

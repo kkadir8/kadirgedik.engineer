@@ -109,6 +109,11 @@ function initLanguageSwitcher() {
                 // Dispatch event for other scripts (like projects.js)
                 window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: newLang } }));
 
+                // Direct call to ensure projects update immediately
+                if (typeof window.updateProjectsLanguage === 'function') {
+                    window.updateProjectsLanguage();
+                }
+
                 // 3. Fade In
                 elements.forEach(el => {
                     el.classList.remove('fade-out');
