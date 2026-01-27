@@ -452,15 +452,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Re-render when language changes
-document.querySelectorAll('.btn-lang').forEach(btn => {
-    btn.addEventListener('click', function () {
-        setTimeout(() => {
-            if (document.getElementById('featuredProjects')) {
-                loadFeaturedProjects();
-            }
-            if (document.getElementById('allProjects')) {
-                renderProjects(window.allProjects || []);
-            }
-        }, 100);
-    });
+// Re-render when language changes (synced with main.js via event)
+window.addEventListener('languageChanged', function (e) {
+    if (document.getElementById('featuredProjects')) {
+        loadFeaturedProjects();
+    }
+    if (document.getElementById('allProjects')) {
+        renderProjects(window.allProjects || []);
+    }
 });

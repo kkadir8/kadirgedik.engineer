@@ -106,6 +106,9 @@ function initLanguageSwitcher() {
                 setLanguage(newLang);
                 localStorage.setItem('lang', newLang);
 
+                // Dispatch event for other scripts (like projects.js)
+                window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: newLang } }));
+
                 // 3. Fade In
                 elements.forEach(el => {
                     el.classList.remove('fade-out');
@@ -479,7 +482,7 @@ async function openProjectModal(projectId) {
         currentMediaIndex = 0;
 
         // Get language
-        const isEnglish = localStorage.getItem('language') === 'en';
+        const isEnglish = localStorage.getItem('lang') === 'en';
 
         // Populate modal content
         const modal = document.getElementById('projectModal');
