@@ -97,7 +97,8 @@ const projectsData = [
 ];
 
 // Current language
-const getLang = () => localStorage.getItem('lang') || 'tr';
+let activeLanguage = null;
+const getLang = () => activeLanguage || localStorage.getItem('lang') || 'tr';
 
 /**
  * Load featured projects on homepage
