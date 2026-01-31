@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Boxes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Demo content overlay */
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 60px;
+            pointer-events: none;
+        }
+
+        .content h1 {
+            color: #ffffff;
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Köşe kararma efekti */
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            background: radial-gradient(ellipse at center,
+                    transparent 10%,
+                    rgba(0, 0, 0, 0.4) 35%,
+                    rgba(0, 0, 0, 0.85) 55%,
+                    rgba(0, 0, 0, 1) 70%);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+
+    <!-- Köşe kararma efekti (vignette) -->
+    <div class="vignette"></div>
+
+    <!-- Demo content - kendi içeriklerinle değiştir -->
+    <div class="content">
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // ============== AYARLAR ==============
+        const CONFIG = {
+            // Grid ayarları
+            gridSize: 8,            // 8x8 küp grid
+            gridSizeZ: 8,
+            cubeSize: 30,           // Küp boyutu
+            cubeHeight: 30,         // Küp yüksekliği
+            gap: 12,                // Küpler arası boşluk
+
+            // Hover efekti
+            hoverRadius: 90,        // Fare etki alanı (geniş - 4'lü grup için)
+            maxLift: 30,            // Maksimum yukarı kalkma (zemine yapışık)
+            liftSpeed: 0.2,         // Kalkma hızı (daha snappy)
+            startHidden: -35,       // Başlangıç pozisyonu (gizli)
+
+            // Renkler
+            bgColor: '#000000'      // Arka plan
+        };
+
+        // Gradient renkleri (sol alttan sağ üste)
+        const GRADIENT_COLORS = {
+            cyan: new THREE.Color('#00ffff'),
+            blue: new THREE.Color('#0088ff'),
+            purple: new THREE.Color('#8844ff'),
+            magenta: new THREE.Color('#ff44ff')
+        };
+
+        // ============== SCENE SETUP ==============
+        const canvas = document.getElementById('canvas');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(CONFIG.bgColor);
+
+        // Orthographic Camera (izometrik görünüm)
+        const aspect = window.innerWidth / window.innerHeight;
+        const frustumSize = 500;
+        const camera = new THREE.OrthographicCamera(
+            -frustumSize * aspect / 2,
+            frustumSize * aspect / 2,
+            frustumSize / 2,
+            -frustumSize / 2,
+            -2000,
+            2000
+        );
+
+        // İzometrik açı - orijinale yakın
+        camera.position.set(300, 320, 300);
+        camera.lookAt(0, 0, 0);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({
+            canvas,
+            antialias: true,
+            alpha: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // ============== CLIPPING PLANE ==============
+        // Zemin seviyesinde kesme - altı görünmez
+        const clippingPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), CONFIG.cubeHeight / 2 + 2);
+        renderer.localClippingEnabled = true;
+
+        // ============== IŞIKLANDIRMA ==============
+        // Minimal ambient light (küpler koyu kalmalı)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
+        scene.add(ambientLight);
+
+        // ============== KÜP OLUŞTURMA ==============
+        const cubes = [];
+        const cubeGroup = new THREE.Group();
+
+        // Gradient renk hesaplama (tavaf eden renkler - sürekli dönüyor)
+        let colorTime = 0;
+        const colorSpeed = 0.2;  // Renk dönüş hızı
+
+        function getAnimatedGradientColor(normalizedX, normalizedZ, time) {
+            // Pozisyon + zaman ile dönen gradient
+            // Tavaf eder gibi renkler sürekli hareket ediyor
+            const baseT = (normalizedX + normalizedZ) / 2;  // Köşegen pozisyon
+            const t = (baseT + time) % 1;  // Time direkt ekleniyor - sürekli kayma
+
+            // Cyan → Blue → Purple → Magenta → Cyan (döngü)
+            if (t < 0.25) {
+                return GRADIENT_COLORS.cyan.clone().lerp(GRADIENT_COLORS.blue, t / 0.25);
+            } else if (t < 0.5) {
+                return GRADIENT_COLORS.blue.clone().lerp(GRADIENT_COLORS.purple, (t - 0.25) / 0.25);
+            } else if (t < 0.75) {
+                return GRADIENT_COLORS.purple.clone().lerp(GRADIENT_COLORS.magenta, (t - 0.5) / 0.25);
+            } else {
+                return GRADIENT_COLORS.magenta.clone().lerp(GRADIENT_COLORS.cyan, (t - 0.75) / 0.25);
+            }
+        }
+
+        // Eski fonksiyon (ilk oluşturma için)
+        function getGradientColor(normalizedX, normalizedZ) {
+            return getAnimatedGradientColor(normalizedX, normalizedZ, 0);
+        }
+
+        // Küp geometrisi
+        const geometry = new THREE.BoxGeometry(
+            CONFIG.cubeSize,
+            CONFIG.cubeHeight,
+            CONFIG.cubeSize
+        );
+
+        const totalWidth = (CONFIG.gridSize - 1) * (CONFIG.cubeSize + CONFIG.gap);
+        const totalDepth = (CONFIG.gridSizeZ - 1) * (CONFIG.cubeSize + CONFIG.gap);
+
+        for (let i = 0; i < CONFIG.gridSize; i++) {
+            for (let j = 0; j < CONFIG.gridSizeZ; j++) {
+                const x = i * (CONFIG.cubeSize + CONFIG.gap) - totalWidth / 2;
+                const z = j * (CONFIG.cubeSize + CONFIG.gap) - totalDepth / 2;
+
+                // Normalize pozisyon (0-1 arası)
+                const normalizedX = i / (CONFIG.gridSize - 1);
+                const normalizedZ = j / (CONFIG.gridSizeZ - 1);
+
+                // Gradient renk al
+                const edgeColor = getGradientColor(normalizedX, normalizedZ);
+
+                // Küp materyali - koyu siyah (clipping ile)
+                const cubeMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x0a0a12,
+                    transparent: true,
+                    opacity: 0.9,
+                    clippingPlanes: [clippingPlane],
+                    clipShadows: true
+                });
+
+                const cube = new THREE.Mesh(geometry, cubeMaterial);
+                // Küpler başlangıçta GİZLİ (aşağıda)
+                cube.position.set(x, CONFIG.startHidden, z);
+
+                // ============== KALIN KENARLAR (Tube Geometry) ==============
+                const edgeRadius = 0.8;  // Kenar kalınlığı (küçük küpler için)
+                const edgeMaterial = new THREE.MeshBasicMaterial({
+                    color: edgeColor,
+                    transparent: true,
+                    opacity: 1.0,
+                    clippingPlanes: [clippingPlane],
+                    clipShadows: true
+                });
+
+                const halfSize = CONFIG.cubeSize / 2;
+                const halfHeight = CONFIG.cubeHeight / 2;
+
+                // Kenar çizgileri için koordinatlar
+                const edgeLines = [
+                    // Alt yüzey (4 kenar)
+                    [[-halfSize, -halfHeight, -halfSize], [halfSize, -halfHeight, -halfSize]],
+                    [[halfSize, -halfHeight, -halfSize], [halfSize, -halfHeight, halfSize]],
+                    [[halfSize, -halfHeight, halfSize], [-halfSize, -halfHeight, halfSize]],
+                    [[-halfSize, -halfHeight, halfSize], [-halfSize, -halfHeight, -halfSize]],
+                    // Üst yüzey (4 kenar)
+                    [[-halfSize, halfHeight, -halfSize], [halfSize, halfHeight, -halfSize]],
+                    [[halfSize, halfHeight, -halfSize], [halfSize, halfHeight, halfSize]],
+                    [[halfSize, halfHeight, halfSize], [-halfSize, halfHeight, halfSize]],
+                    [[-halfSize, halfHeight, halfSize], [-halfSize, halfHeight, -halfSize]],
+                    // Dikey kenarlar (4 kenar)
+                    [[-halfSize, -halfHeight, -halfSize], [-halfSize, halfHeight, -halfSize]],
+                    [[halfSize, -halfHeight, -halfSize], [halfSize, halfHeight, -halfSize]],
+                    [[halfSize, -halfHeight, halfSize], [halfSize, halfHeight, halfSize]],
+                    [[-halfSize, -halfHeight, halfSize], [-halfSize, halfHeight, halfSize]]
+                ];
+
+                const edgesGroup = new THREE.Group();
+
+                edgeLines.forEach(([start, end], edgeIndex) => {
+                    const startVec = new THREE.Vector3(...start);
+                    const endVec = new THREE.Vector3(...end);
+                    const direction = new THREE.Vector3().subVectors(endVec, startVec);
+                    const length = direction.length();
+
+                    const edgeGeometry = new THREE.CylinderGeometry(edgeRadius, edgeRadius, length, 6);
+                    const edge = new THREE.Mesh(edgeGeometry, edgeMaterial.clone());
+
+                    // Pozisyon ve rotasyon
+                    edge.position.copy(startVec).add(endVec).multiplyScalar(0.5);
+                    edge.quaternion.setFromUnitVectors(
+                        new THREE.Vector3(0, 1, 0),
+                        direction.clone().normalize()
+                    );
+
+                    // L şeklinde açılma animasyonu için veri sakla
+                    edge.userData = {
+                        originalLength: length,
+                        edgeIndex: edgeIndex,
+                        // Kenar tipi: 0-3 alt, 4-7 üst, 8-11 dikey
+                        edgeType: edgeIndex < 4 ? 'bottom' : (edgeIndex < 8 ? 'top' : 'vertical')
+                    };
+
+                    // Başlangıçta kenarlar gizli (scale Y = 0)
+                    edge.scale.y = 0.01;
+
+                    edgesGroup.add(edge);
+                });
+
+                // Köşe küreleri (daha güzel görünüm için)
+                const corners = [
+                    [-halfSize, -halfHeight, -halfSize],
+                    [halfSize, -halfHeight, -halfSize],
+                    [halfSize, -halfHeight, halfSize],
+                    [-halfSize, -halfHeight, halfSize],
+                    [-halfSize, halfHeight, -halfSize],
+                    [halfSize, halfHeight, -halfSize],
+                    [halfSize, halfHeight, halfSize],
+                    [-halfSize, halfHeight, halfSize]
+                ];
+
+                const sphereGeometry = new THREE.SphereGeometry(edgeRadius * 1.1, 8, 8);
+                corners.forEach((pos, cornerIndex) => {
+                    const sphere = new THREE.Mesh(sphereGeometry, edgeMaterial.clone());
+                    sphere.position.set(...pos);
+                    // Animasyon verisi
+                    sphere.userData = { isCorner: true, cornerIndex: cornerIndex };
+                    // Başlangıçta gizli
+                    sphere.scale.set(0.01, 0.01, 0.01);
+                    edgesGroup.add(sphere);
+                });
+
+                cube.add(edgesGroup);
+
+                // Küp başlangıçta görünmez
+                cube.visible = false;
+
+                // ============== HER KÜP İÇİN ZEMİN ==============
+                // Gap dahil alanı kaplayan zemin - sadece bu küp için
+                const floorSize = CONFIG.cubeSize + CONFIG.gap;
+                const floorGeometry = new THREE.PlaneGeometry(floorSize, floorSize);
+                const floorMaterial = new THREE.MeshBasicMaterial({
+                    color: edgeColor,
+                    transparent: true,
+                    opacity: 0,
+                    side: THREE.DoubleSide
+                });
+                const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+                floor.rotation.x = -Math.PI / 2;
+                floor.position.set(x, -CONFIG.cubeHeight / 2 - 2, z);
+                floor.visible = false;
+                cubeGroup.add(floor);
+
+                // Veri sakla
+                cube.userData = {
+                    originalY: CONFIG.startHidden,
+                    targetY: CONFIG.startHidden,
+                    currentY: CONFIG.startHidden,
+                    gridX: i,
+                    gridZ: j,
+                    baseColor: edgeColor.clone(),
+                    normalizedPos: (normalizedX + normalizedZ) / 2,
+                    floor: floor,
+                    // SCALE ANİMASYONU - köşeden birleşme efekti
+                    targetScale: 0,      // Hedef scale (0 = gizli, 1 = tam)
+                    currentScale: 0      // Mevcut scale (smooth geçiş için)
+                };
+
+                cubes.push(cube);
+                cubeGroup.add(cube);
+            }
+        }
+
+
+
+        // ============== ZEMİN DOTS PATTERN ==============
+        // Küplerin yerlerini gösteren hafif noktalar
+        const dotsGroup = new THREE.Group();
+        const gridDots = [];  // Dots referansları
+
+        for (let i = 0; i < CONFIG.gridSize; i++) {
+            for (let j = 0; j < CONFIG.gridSizeZ; j++) {
+                const x = i * (CONFIG.cubeSize + CONFIG.gap) - totalWidth / 2;
+                const z = j * (CONFIG.cubeSize + CONFIG.gap) - totalDepth / 2;
+
+                const normalizedX = i / (CONFIG.gridSize - 1);
+                const normalizedZ = j / (CONFIG.gridSizeZ - 1);
+                const dotColor = getGradientColor(normalizedX, normalizedZ);
+
+                // Küp köşelerinde küçük noktalar
+                const dotSize = 2;
+                const halfCube = CONFIG.cubeSize / 2;
+                const corners = [
+                    [-halfCube, -halfCube],
+                    [halfCube, -halfCube],
+                    [-halfCube, halfCube],
+                    [halfCube, halfCube]
+                ];
+
+                corners.forEach(([dx, dz]) => {
+                    const dotGeometry = new THREE.CircleGeometry(dotSize, 8);
+                    const dotMaterial = new THREE.MeshBasicMaterial({
+                        color: dotColor,
+                        transparent: true,
+                        opacity: 0.4
+                    });
+                    const dot = new THREE.Mesh(dotGeometry, dotMaterial);
+                    dot.rotation.x = -Math.PI / 2;
+                    dot.position.set(x + dx, -CONFIG.cubeHeight / 2 + 1, z + dz);
+
+                    // Renk animasyonu için veri sakla
+                    dot.userData = { normalizedX, normalizedZ };
+                    gridDots.push(dot);
+
+                    dotsGroup.add(dot);
+                });
+            }
+        }
+
+        cubeGroup.add(dotsGroup);
+
+        scene.add(cubeGroup);
+
+        // ============== FARE TAKİBİ ==============
+        const mouse = new THREE.Vector2();
+        const raycaster = new THREE.Raycaster();
+        let mouseWorldPos = new THREE.Vector3();
+
+        function updateMouseWorldPosition(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+            raycaster.ray.intersectPlane(plane, mouseWorldPos);
+        }
+
+        document.addEventListener('mousemove', updateMouseWorldPosition);
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches[0]) {
+                updateMouseWorldPosition({
+                    clientX: e.touches[0].clientX,
+                    clientY: e.touches[0].clientY
+                });
+            }
+        });
+
+        // ============== ANİMASYON ==============
+        function animate() {
+            requestAnimationFrame(animate);
+
+            let anyVisible = false;
+            let maxFactor = 0;
+
+            cubes.forEach((cube) => {
+                const dx = cube.position.x - mouseWorldPos.x;
+                const dz = cube.position.z - mouseWorldPos.z;
+                const distance = Math.sqrt(dx * dx + dz * dz);
+
+                // Dış halka (peeping zone) - küpler hafifçe görünür
+                const outerRadius = CONFIG.hoverRadius * 0.3;
+
+                if (distance < CONFIG.hoverRadius) {
+                    // İÇ HALKA - küpler tamamen çıkıyor
+                    // Phase 1: Radius içine girer girmez %50 (baseLift)
+                    // Phase 2: Merkeze yaklaştıkça %100'e (variableLift)
+                    // Plateau etkisi: Neighbors tam 1.0 olsun (x2.5 katsayı ile)
+                    const rawProx = 1 - (distance / CONFIG.hoverRadius);
+                    const prox = Math.min(1, rawProx * 2.5);
+
+                    const baseLift = 0.5;
+                    const liftAmount = baseLift + (prox * 0.5);
+
+                    maxFactor = Math.max(maxFactor, prox);
+
+                    cube.userData.targetY = CONFIG.startHidden + CONFIG.maxLift * liftAmount;
+
+                    // SCALE - köşeden birleşme efekti
+                    cube.userData.targetScale = liftAmount;  // Lift ile eş zamanlı
+
+                    // Küp görünür yap
+                    cube.visible = true;
+                    anyVisible = true;
+
+                    // FLOOR - Fade effect
+                    // Yükseklik yüzdesine göre opaklık artır (0.5'ten 0.8'e kadar fade in - daha geç belirsin)
+                    const liftProgress = (cube.userData.currentY - CONFIG.startHidden) / CONFIG.maxLift;
+                    const floorFade = Math.max(0, Math.min(1, (liftProgress - 0.5) / 0.3));
+
+                    if (cube.userData.floor) {
+                        cube.userData.floor.visible = floorFade > 0.01;
+                        cube.userData.floor.material.opacity = (0.85 + prox * 0.15) * floorFade;
+                    }
+
+                    // L ŞEKLİNDE AÇILMA ANİMASYONU
+                    const edgesGroup = cube.children[0];
+                    if (edgesGroup && edgesGroup.children) {
+                        // Animasyon ilerlemesi - Phase 2'de daha hızlı tamamlansın
+                        // liftAmount 0.83 iken (prox 0.66) animasyon bitsin ki tepeye varmadan şekil oluşsun
+                        const unfoldProgress = Math.max(0, Math.min(1, (liftAmount - 0.5) * 3));
+
+                        edgesGroup.children.forEach(element => {
+                            if (element.material) {
+                                element.material.opacity = 0.9 + prox * 0.1;
+                            }
+
+                            if (element.userData.isCorner) {
+                                // Köşe küreleri
+                                const targetScale = unfoldProgress;
+                                const currentScale = element.scale.x;
+                                const newScale = currentScale + (targetScale - currentScale) * 0.3;
+                                element.scale.set(newScale, newScale, newScale);
+                            } else if (element.userData.edgeIndex !== undefined) {
+                                // Kenarlar - L şeklinde açılma
+                                let edgeDelay = 0;
+                                if (element.userData.edgeType === 'vertical') {
+                                    edgeDelay = 0;
+                                } else if (element.userData.edgeType === 'top') {
+                                    edgeDelay = 0.5;  // Biraz daha erken başlasın
+                                } else {
+                                    edgeDelay = 0.3;  // Biraz daha erken başlasın
+                                }
+
+                                const delayedProgress = Math.max(0, Math.min(1, (unfoldProgress - edgeDelay) / (1 - edgeDelay)));
+                                const targetScaleY = delayedProgress;
+                                const currentScaleY = element.scale.y;
+                                const newScaleY = currentScaleY + (targetScaleY - currentScaleY) * 0.35;
+                                element.scale.y = Math.max(0.01, newScaleY);
+                            }
+                        });
+                    }
+
+                    // Küp opaklığını artır
+                    cube.material.opacity = 0.85 + prox * 0.15;
+
+                } else if (distance < outerRadius) {
+                    // DIŞ HALKA - sadece en uçtaki küpler hafif çıkmış (squish efekti)
+                    const peepFactor = 1 - ((distance - CONFIG.hoverRadius) / (outerRadius - CONFIG.hoverRadius));
+
+                    // Küp yarı çıkmış
+                    cube.userData.targetY = CONFIG.startHidden + (CONFIG.maxLift * 0.3) * peepFactor;
+
+                    // SCALE - dış halkada kısmi scale
+                    cube.userData.targetScale = peepFactor * 0.6;
+
+                    // Küp görünür yap
+                    cube.visible = true;
+
+                    // FLOOR
+                    const cubeAboveGround = cube.userData.currentY > CONFIG.startHidden + (CONFIG.maxLift * 0.5);
+                    if (cube.userData.floor) {
+                        cube.userData.floor.visible = cubeAboveGround && peepFactor > 0.3;
+                        cube.userData.floor.material.opacity = cubeAboveGround ? (0.4 * peepFactor) : 0;
+                    }
+
+                    // Edge hafif görünür + L şeklinde kısmi açılma
+                    const edgesGroup = cube.children[0];
+                    if (edgesGroup && edgesGroup.children) {
+                        // Dış halkada kısmi açılma
+                        const unfoldProgress = Math.min(1, peepFactor * 0.8);
+
+                        edgesGroup.children.forEach(element => {
+                            if (element.material) {
+                                element.material.opacity = 0.3 * peepFactor;
+                            }
+
+                            if (element.userData.isCorner) {
+                                const targetScale = unfoldProgress;
+                                const currentScale = element.scale.x;
+                                const newScale = currentScale + (targetScale - currentScale) * 0.25;
+                                element.scale.set(newScale, newScale, newScale);
+                            } else if (element.userData.edgeIndex !== undefined) {
+                                const targetScaleY = unfoldProgress;
+                                const currentScaleY = element.scale.y;
+                                const newScaleY = currentScaleY + (targetScaleY - currentScaleY) * 0.25;
+                                element.scale.y = Math.max(0.01, newScaleY);
+                            }
+                        });
+                    }
+
+                    // Küp düşük opacity
+                    cube.material.opacity = 0.3 * peepFactor;
+
+                } else {
+                    // UZAK - küp tamamen gizli
+                    cube.userData.targetY = CONFIG.startHidden;
+                    cube.userData.targetScale = 0;  // Scale sıfıra
+
+                    // FLOOR - Fade out smoothly during descent
+                    if (cube.userData.floor && cube.visible) {
+                        const liftProgress = (cube.userData.currentY - CONFIG.startHidden) / CONFIG.maxLift;
+                        const floorFade = Math.max(0, Math.min(1, (liftProgress - 0.5) / 0.3));
+
+                        cube.userData.floor.visible = floorFade > 0.01;
+                        cube.userData.floor.material.opacity = 0.85 * floorFade;
+                    }
+
+                    // Küp yeterince aşağıdaysa TAMAMEN gizle
+                    if (cube.userData.currentY < CONFIG.startHidden + 3) {
+                        cube.visible = false;
+
+                        // FLOOR gizle
+                        if (cube.userData.floor) {
+                            cube.userData.floor.visible = false;
+                            cube.userData.floor.material.opacity = 0;
+                        }
+                    }
+
+                    // Edge opacity ve scale azalt - L şeklinde kapanma
+                    const edgesGroup = cube.children[0];
+                    if (edgesGroup && edgesGroup.children) {
+                        edgesGroup.children.forEach(element => {
+                            if (element.material) {
+                                element.material.opacity = Math.max(0, element.material.opacity - 0.1);
+                            }
+
+                            if (element.userData.isCorner) {
+                                // Köşeler kapanıyor
+                                const currentScale = element.scale.x;
+                                const newScale = currentScale * 0.85;  // Yavaşça küçül
+                                element.scale.set(Math.max(0.01, newScale), Math.max(0.01, newScale), Math.max(0.01, newScale));
+                            } else if (element.userData.edgeIndex !== undefined) {
+                                // Kenarlar kapanıyor
+                                const currentScaleY = element.scale.y;
+                                const newScaleY = currentScaleY * 0.85;  // Yavaşça küçül
+                                element.scale.y = Math.max(0.01, newScaleY);
+                            }
+                        });
+                    }
+
+                    cube.material.opacity = 0;
+                }
+
+                // ============== DÖNEN RENK ANİMASYONU ==============
+                // Her küpün rengini zamana göre güncelle
+                const normalizedX = cube.userData.gridX / (CONFIG.gridSize - 1);
+                const normalizedZ = cube.userData.gridZ / (CONFIG.gridSizeZ - 1);
+                const newColor = getAnimatedGradientColor(normalizedX, normalizedZ, colorTime);
+
+                // Edge renklerini güncelle
+                const edgesGroup = cube.children[0];
+                if (edgesGroup && edgesGroup.children) {
+                    edgesGroup.children.forEach(edge => {
+                        if (edge.material) {
+                            edge.material.color.copy(newColor);
+                        }
+                    });
+                }
+
+                // Floor rengini güncelle
+                if (cube.userData.floor) {
+                    cube.userData.floor.material.color.copy(newColor);
+                }
+
+                // Smooth pozisyon geçişi
+                cube.userData.currentY += (cube.userData.targetY - cube.userData.currentY) * CONFIG.liftSpeed;
+                cube.position.y = cube.userData.currentY;
+            });
+
+            // Renk zamanını güncelle (sürekli döngü)
+            colorTime += colorSpeed * 0.016;  // ~60fps için
+
+            // Grid dots renklerini güncelle
+            gridDots.forEach(dot => {
+                const newColor = getAnimatedGradientColor(dot.userData.normalizedX, dot.userData.normalizedZ, colorTime);
+                dot.material.color.copy(newColor);
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // ============== RESPONSIVE ==============
+        window.addEventListener('resize', () => {
+            const aspect = window.innerWidth / window.innerHeight;
+            camera.left = -frustumSize * aspect / 2;
+            camera.right = frustumSize * aspect / 2;
+            camera.top = frustumSize / 2;
+            camera.bottom = -frustumSize / 2;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        console.log('✅ Interactive 3D Boxes v2 - Orijinal tasarıma yakın!');
+    </script>
+</body>
+
+</html>

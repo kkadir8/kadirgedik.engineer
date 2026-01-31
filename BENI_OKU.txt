@@ -1,0 +1,23 @@
+Kadir Gedik - Final Projesi Kurulum Talimatları
+
+Projeyi çalıştırmak için lütfen aşağıdaki adımları izleyin:
+
+1. Bu klasörü bilgisayarınıza çıkarın.
+2. Klasör içinde terminal/komut satırını açın.
+3. Gerekli paketleri yüklemek için şu komutu çalıştırın:
+   npm install
+
+4. Projeyi başlatmak için şu komutu çalıştırın:
+   npm start
+
+5. Tarayıcınızda şu adrese gidin:
+   http://localhost:3000
+
+---
+ÖNEMLİ NOTLAR:
+- .env dosyası (veritabanı bilgileri) güvenlik nedeniyle dahil edilmemiştir. 
+- Proje veritabanı bağlantısı bulamazsa otomatik olarak "Demo Modu"nda çalışacak şekilde ayarlanmıştır.
+- Bu sayede MongoDB kurulumuna gerek kalmadan tüm arayüzü ve özellikleri inceleyebilirsiniz.
+---
+Kadir Gedik
+Web Tasarımı ve Programlama Final Projesi

@@ -453,7 +453,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Global function to update projects language (called from main.js)
-window.updateProjectsLanguage = function () {
+window.updateProjectsLanguage = function (lang) {
+    if (lang) {
+        activeLanguage = lang;
+        localStorage.setItem('lang', lang); // Ensure sync
+    }
+
     if (document.getElementById('featuredProjects')) {
         loadFeaturedProjects();
     }
